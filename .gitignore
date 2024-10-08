@@ -76,6 +76,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+ecoenv/
+Scripts/
+pyvenv.cfg
 
 # mkdocs documentation #
 /site
