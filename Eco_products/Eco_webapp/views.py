@@ -26,7 +26,7 @@ def login_user(request):
             return redirect('home')
         else:
             # If authentication fails, display an error message to the user
-            messages.success(request,('There was an error logging in , Try Again...'))
+            messages.success(request,('Sorry Account not found'))
             # Redirect the user back to the login page for another attempt
             return redirect('login')
     else:
