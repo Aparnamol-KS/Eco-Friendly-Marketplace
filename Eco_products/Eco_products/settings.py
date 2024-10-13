@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Eco_webapp'
+    'Eco_webapp',
+    'import_export'
 ]
 
 MIDDLEWARE = [
