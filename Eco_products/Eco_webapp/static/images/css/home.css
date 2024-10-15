@@ -1,0 +1,254 @@
+/* Wishlist */
+.wishlist {
+    color: #013220;
+    font-size: 30px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Cart */
+.cart {
+    color: #013220;
+    font-size: 30px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Shop */
+.shop {
+    color: #013220;
+    font-size: 30px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Sign In/Register */
+.sign-in-register {
+    color: white;
+    font-size: 30px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Home */
+.home {
+    color: #013220;
+    font-size: 30px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* EcoRoots */
+.eco-roots {
+    color: white;
+    font-size: 176px;
+    font-family: Original;
+    font-weight: 100;
+    word-wrap: break-word;
+}
+
+/* Sustainable living simplified */
+.sustainable-living {
+    color: white;
+    font-size: 45px;
+    font-family: Original;
+    font-weight: 100;
+    word-wrap: break-word;
+}
+
+/* Shop Now */
+.shop-now {
+    color: #013220;
+    font-size: 32px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Zero-Waste Products */
+.zero-waste-products {
+    color: #E9FAFD;
+    font-size: 44px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Sustainable Home Essentials */
+.sustainable-home-essentials {
+    color: #E9FAFD;
+    font-size: 44px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Sustainable Fashion */
+.sustainable-fashion {
+    color: #E9FAFD;
+    font-size: 44px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Personal Care */
+.personal-care {
+    color: #E9FAFD;
+    font-size: 44px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* BEST SELLERS */
+.best-sellers {
+    color: #E9FAFD;
+    font-size: 65px;
+    font-family: Original;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Eco-Friendly Favorites Everyone Loves */
+.eco-friendly-favorites {
+    color: white;
+    font-size: 35px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Handmade Natural Soap Bars */
+.handmade-soap {
+    color: black;
+    font-size: 30px;
+    font-family: Gilroy;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Swipe through for more exciting deals! */
+.swipe-deals {
+    color: #333333;
+    font-size: 45px;
+    font-family: Gilroy;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+/* ABOUT US */
+.about-us {
+    color: white;
+    font-size: 40px;
+    font-family: Original;
+    font-weight: 400;
+    text-decoration: underline;
+    word-wrap: break-word;
+}
+
+/* About Us Text */
+.about-us-text {
+    color: #E9FAFD;
+    font-size: 33px;
+    font-family: Gilroy;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* COMPANY */
+.company {
+    color: #18291E;
+    font-size: 33px;
+    font-family: Gilroy;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* CONTACT US */
+.contact-us {
+    color: #18291E;
+    font-size: 33px;
+    font-family: Gilroy;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Contact Info */
+.contact-info {
+    color: #18291E;
+    font-size: 28px;
+    font-family: Gilroy;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+/* CUSTOMER */
+.customer {
+    color: #18291E;
+    font-size: 33px;
+    font-family: Gilroy;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Return Info */
+.return-info {
+    color: #18291E;
+    font-size: 28px;
+    font-family: Gilroy;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+/* Subscribe Section */
+.subscribe {
+    color: white;
+    font-size: 28px;
+    font-family: Gilroy;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Email Entry */
+.email-entry {
+    color: #013220;
+    font-size: 33px;
+    font-family: Gilroy;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Agreement Text */
+.agreement-text {
+    color: #18291E;
+    font-size: 28px;
+    font-family: Gilroy;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+/* Privacy Policy Link */
+.privacy-policy {
+    color: #18291E;
+    font-size: 28px;
+    font-family: Gilroy;
+    font-weight: 600;
+    text-decoration: underline;
+    word-wrap: break-word;
+}
+
+/* Terms of Service Link */
+.terms-of-service {
+    color: #18291E;
+    font-size: 28px;
+    font-family: Gilroy;
+    font-weight: 600;
+    text-decoration: underline;
+    word-wrap: break-word;
+}
