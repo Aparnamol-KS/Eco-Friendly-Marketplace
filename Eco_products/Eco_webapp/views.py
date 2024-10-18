@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import UserDetails
 
 
 # Create your views here.
@@ -32,31 +33,40 @@ def login_user(request):
     else:
         # If the request method is GET, render the login page
         return render(request,'login.html',context={})
-    
+
 
 def register_user(request):
     if request.method == 'POST':
-        username = request.POST["name1"]
-        password = request.POST["pwd1"]
+        name = request.POST['name1']
+        email = request.POST['email']
+        password = request.POST['password'] 
         
-        # Check if the username already exists
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Username already exists. Please choose a different one.')
+        if UserDetails.objects.filter(email=email).exists():
+            messages.error(request, 'This email is already registered.')
             return redirect('register')
         
-        # Create a new user
-        user = User.objects.create_user(username=username, password=password)
+        # Assign a default role, for example, 'Buyer'
+        default_role = 'Buyer'
         
-        # Authenticate and log the user in
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'You have registered successfully! Welcome!')
-            return redirect('home')
-        else:
-            messages.error(request, 'There was a problem registering. Please try again.')
-            return redirect('register')
-    else:
-        return render(request, 'register.html')
+        # Create a new CustomUser entry
+        custom_user = UserDetails.objects.create(
+            name=name,
+            email=email,
+            password=password,
+            role=default_role
+        )
+        custom_user.save()
+        messages.success(request, 'User registered successfully!')
+        return redirect('login')
+    
+    return render(request, 'register.html')
+
 
     
+def product_listing(request):
+    return render(request,'product_listing.html',context={})
+
+def product_detail(request):
+    return render(request,'single_product_view.html',context={})
+
 

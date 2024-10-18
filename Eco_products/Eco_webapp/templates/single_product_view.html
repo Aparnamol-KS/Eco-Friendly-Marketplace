@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Product Page{% endblock title %}
+
+{% block style %}
+<style>
+  body {
+    font-family: Gilroy;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #E9FAFD;
+    ;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rating i {
+    font-size: 16px;
+    color: gold;
+
+  }
+
+  .field {
+    padding: 2px;
+  }
+
+  .button {
+    background-color: #18291e;
+    color: white;
+    width: 9em;
+    height: 3em;
+    font-size: 1rem;
+    border: none;
+    border-radius: 30px;
+  }
+
+  .nav-link {
+    margin-left: 40px;
+    font-size: 17px;
+  }
+
+  .profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+</style>
+
+{% endblock style %}
+
+{% block content %}
+
+{% include "navbar.html" %}
+<section>
+  <div class="w-100">
+    <h1 class=" text-white w-100 p-3 pl-5"
+      style="font-weight:200; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 30px; background-color: #18291e;">
+      Sustainable Home Essentials</h1>
+  </div>
+
+  <div class="container">
+    <div class="row ">
+
+      <div class="col-md-6 my-auto">
+        <img src=" {% static 'images\Eco-friendly-toothbrush.jpeg' %} " class="img-fluid rounded mt-3"
+          style="height:520px; width:400px;" alt="Responsive image">
+      </div>
+
+      <div class="col-md-6 my-auto">
+        <h1 style="font-size: 35px;">Bamboo Toothbrushes</h1>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <i class="far fa-star"></i>
+        </div>
+
+        <p style="color:green; font-size: 25px;">$4</p>
+        <p style="font-size: 15px;">Switch to a greener lifestyle with our eco-friendly bamboo toothbrushes, made from
+          100% biodegradable bamboo. Thoughtfully designed for both comfort and quality, these toothbrushes offer a
+          sustainable, plastic-free alternative that cares for your smile and the planet.</p>
+        <ul style="font-size: 15px;">
+          <li><strong>Eco-Certifications : </strong> EcoCert, Plastic-Free Trustmark</li>
+          <li><strong>Stock : </strong> 150 units</li>
+          <li><strong>Material : </strong>Natural bamboo handle, BPA-free soft bristles</li>
+          <li><strong>Category : </strong> Oral Care</li>
+          <li><strong>Care Instructions : </strong> Keep dry after use for extended life.</li>
+
+        </ul>
+        <div class="row pt-4">
+          <div class="col-md-6">
+            <button type="submit" name="submit_button" class="button w-100">
+              ADD TO WISHLIST
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button type="submit" name="submit_button" class="button w-100">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
