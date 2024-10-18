@@ -1,371 +1,425 @@
 <header class="flex overflow-hidden flex-col pt-14 bg-cyan-50">
-    <div class="flex flex-wrap gap-5 justify-between self-center ml-3.5 w-full max-w-[1650px] max-md:max-w-full">
-      <div class="flex gap-6 items-start self-end mt-6">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b31b560a75a8383192ffeda0d6e787336930c8b2c35c966451e94843e08c3d0f?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="EcoRoots logo" class="object-contain shrink-0 mt-1.5 aspect-[1.11] w-[62px]" />
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/718f32d15dd1c0c939231ebbf42c3382434b20241e98239ae705eee8efe50b1e?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="Sustainability icon" class="object-contain shrink-0 aspect-[1.11] w-[50px]" />
-      </div>
-      <nav class="flex flex-wrap gap-10 items-center text-3xl font-medium text-center text-emerald-950 max-md:max-w-full">
-        <a href="#" class="self-stretch my-auto">Home</a>
-        <a href="#" class="self-stretch my-auto">Shop</a>
-        <a href="#" class="self-stretch my-auto">Cart</a>
-        <a href="#" class="self-stretch my-auto basis-auto">Wishlist</a>
-        <a href="#" class="self-stretch px-3 py-7 text-white border-4 border-solid bg-emerald-950 border-emerald-950">Sign In/ Register</a>
-      </nav>
+  <div class="flex flex-wrap gap-5 justify-between self-center ml-3.5 w-full max-w-[1650px] max-md:max-w-full">
+    <div class="flex gap-6 items-start self-end mt-6">
+      <img loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/b31b560a75a8383192ffeda0d6e787336930c8b2c35c966451e94843e08c3d0f?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+        alt="EcoRoots logo" class="object-contain shrink-0 mt-1.5 aspect-[1.11] w-[62px]" />
+      <img loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/718f32d15dd1c0c939231ebbf42c3382434b20241e98239ae705eee8efe50b1e?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+        alt="Sustainability icon" class="object-contain shrink-0 aspect-[1.11] w-[50px]" />
     </div>
-    <style>
-        .hero-container {
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          min-height: 738px;
-          margin-top: 33px;
-          width: 100%;
-          align-items: center;
-          font-family: Original, sans-serif;
-          color: #fff;
-          font-weight: 100;
-          text-align: center;
-          justify-content: center;
-          padding: 210px 80px;
-        }
-        @font-face {
-            font-family: 'Original';
-            src: url('https://drive.google.com/file/d/1fDitEcI5-z-HXCTxZ37L7V3wV5wzT5Nw/view?usp=drive_link') format('otf');
-          }
-        
-          @font-face {
-            font-family: 'Gilroy';
-            src: url('Gilroy-Bold.woff') format('otf');
-          }
-          
-        @media (max-width: 991px) {
-          .hero-container {
-            max-width: 100%;
-            padding: 100px 20px;
-          }
-        }
-        
-        .hero-background {
-          position: absolute;
-          inset: 0;
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          object-position: center;
-        }
-        
-        .hero-content {
-          position: relative;
-          display: flex;
-          width: 708px;
-          max-width: 100%;
-          flex-direction: column;
-          align-items: center;
-          margin: 0 0 -34px 20px;
-        }
-        
-        @media (max-width: 991px) {
-          .hero-content {
-            margin-bottom: 10px;
-          }
-        }
-        
-        .hero-title {
-          font-size: 176px;
-          align-self: stretch;
-        }
-        
-        @media (max-width: 991px) {
-          .hero-title {
-            max-width: 100%;
-            font-size: 40px;
-          }
-        }
-        
-        .hero-subtitle {
-          font-size: 45px;
-          margin-top: 39px;
-        }
-        
-        @media (max-width: 991px) {
-          .hero-subtitle {
-            max-width: 100%;
-            font-size: 40px;
-          }
-        }
-        
-        .cta-button {
-          background-color: #e9fafd;
-          margin-top: 13px;
-          width: 248px;
-          max-width: 100%;
-          color: #013220;
-          padding: 24px 49px;
-          font: 500 32px Gilroy, sans-serif;
-          border: 4px solid #013220;
-          cursor: pointer;
-        }
-        
-        @media (max-width: 991px) {
-          .cta-button {
-            padding: 24px 20px;
-          }
-        }
-        
-        .visually-hidden {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          margin: -1px;
-          overflow: hidden;
-          clip: rect(0, 0, 0, 0);
-          white-space: nowrap;
-          border: 0;
-        }
-        </style>
-        <section class="hero-container">
-          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/229f6bab0468710c2c8f56c685b90faa97b8995e7b92c92c769c9acbf823319f?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="" class="hero-background" />
-          <div class="hero-content">
-            <h1 class="hero-title">EcoRoots</h1>
-            <p class="hero-subtitle">Sustainable living simplified</p>
-            <button class="cta-button" tabindex="0">Shop Now</button>
-          </div>
-        </section>
-        
-        <style>
-            .sustainable-categories {
-              display: flex;
-              flex-direction: column;
-              position: relative;
-              min-height: 998px;
-              width: 100%;
-              align-items: center;
-              color: #e9fafd;
-              text-align: center;
-              justify-content: center;
-              padding: 240px 80px;
-              font: 500 44px Gilroy, sans-serif;
-            }
-          
-            .background-image {
-              position: absolute;
-              inset: 0;
-              height: 100%;
-              width: 100%;
-              object-fit: cover;
-              object-position: center;
-            }
-          
-            .categories-container {
-              position: relative;
-              display: flex;
-              margin-bottom: -40px;
-              width: 100%;
-              max-width: 1445px;
-              flex-direction: column;
-            }
-          
-            .categories-row {
-              display: flex;
-              gap: 20px;
-              flex-wrap: wrap;
-              justify-content: space-between;
-            }
-          
-            .category-item {
-              border-radius: 30px;
-              background-color: #013220;
-              padding: 57px 70px;
-              border: 2px solid #013220;
-            }
-          
-            .zero-waste {
-              width: 382px;
-              box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-              padding: 38px 70px 78px;
-            }
-          
-            .bottom-row {
-              margin-top: 118px;
-            }
-          
-            .sustainable-fashion {
-              width: 302px;
-            }
-          
-            .personal-care {
-              padding: 61px 70px 106px;
-            }
-          
-            @media (max-width: 991px) {
-              .sustainable-categories {
-                max-width: 100%;
-                padding: 100px 20px;
-              }
-          
-              .categories-container {
-                max-width: 100%;
-                margin-bottom: 10px;
-              }
-          
-              .categories-row {
-                max-width: 100%;
-              }
-          
-              .category-item {
-                max-width: 100%;
-                padding: 0 20px;
-              }
-          
-              .bottom-row {
-                max-width: 100%;
-                margin-top: 40px;
-              }
-          
-              .personal-care {
-                padding: 0 20px 100px;
-              }
-            }
-          </style>
-          
-          <section class="sustainable-categories">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/87bae7198c889777440d24b07a759c4633bcffac6874d80746b8e261dd9d616b?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="" class="background-image" />
-            <div class="categories-container">
-              <div class="categories-row">
-                <h2 class="category-item">Sustainable Home Essentials</h2>
-                <h2 class="category-item zero-waste">Zero-Waste Products</h2>
-              </div>
-              <div class="categories-row bottom-row">
-                <h2 class="category-item sustainable-fashion">Sustainable Fashion</h2>
-                <h2 class="category-item personal-care">Personal Care</h2>
-              </div>
-            </div>
-          </section>
-  </header>
-  
-  <main>
-    <section class="flex relative flex-col justify-center items-center px-20 py-52 mt-8 w-full font-thin text-center text-white min-h-[738px] max-md:px-5 max-md:py-24 max-md:max-w-full">
-      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/229f6bab0468710c2c8f56c685b90faa97b8995e7b92c92c769c9acbf823319f?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="Background image of sustainable products" class="object-cover absolute inset-0 size-full" />
-      <div class="flex relative flex-col items-center mb-0 ml-5 max-w-full w-[708px] max-md:mb-2.5">
-        <h1 class="self-stretch text-[176px] max-md:max-w-full max-md:text-4xl">EcoRoots</h1>
-        <p class="mt-10 text-5xl max-md:max-w-full max-md:text-4xl">Sustainable living simplified</p>
-        <a href="#" class="px-12 py-6 mt-3.5 max-w-full text-3xl font-medium bg-cyan-50 border-4 border-solid border-emerald-950 text-emerald-950 w-[248px] max-md:px-5">Shop Now</a>
+    <nav class="flex flex-wrap gap-10 items-center text-3xl font-medium text-center text-emerald-950 max-md:max-w-full">
+      <a href="#" class="self-stretch my-auto">Home</a>
+      <a href="#" class="self-stretch my-auto">Shop</a>
+      <a href="#" class="self-stretch my-auto">Cart</a>
+      <a href="#" class="self-stretch my-auto basis-auto">Wishlist</a>
+      <a href="#" class="self-stretch px-3 py-7 text-white border-4 border-solid bg-emerald-950 border-emerald-950">Sign
+        In/ Register</a>
+    </nav>
+  </div>
+  <style>
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      min-height: 738px;
+      margin-top: 33px;
+      width: 100%;
+      align-items: center;
+      font-family: Original, sans-serif;
+      color: #fff;
+      font-weight: 100;
+      text-align: center;
+      justify-content: center;
+      padding: 210px 80px;
+    }
+
+    @font-face {
+      font-family: 'Original';
+      src: url('https://drive.google.com/file/d/1fDitEcI5-z-HXCTxZ37L7V3wV5wzT5Nw/view?usp=drive_link') format('otf');
+    }
+
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('Gilroy-Bold.woff') format('otf');
+    }
+
+    @media (max-width: 991px) {
+      .hero-container {
+        max-width: 100%;
+        padding: 100px 20px;
+      }
+    }
+
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-content {
+      position: relative;
+      display: flex;
+      width: 708px;
+      max-width: 100%;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 0 -34px 20px;
+    }
+
+    @media (max-width: 991px) {
+      .hero-content {
+        margin-bottom: 10px;
+      }
+    }
+
+    .hero-title {
+      font-size: 176px;
+      align-self: stretch;
+    }
+
+    @media (max-width: 991px) {
+      .hero-title {
+        max-width: 100%;
+        font-size: 40px;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 45px;
+      margin-top: 39px;
+    }
+
+    @media (max-width: 991px) {
+      .hero-subtitle {
+        max-width: 100%;
+        font-size: 40px;
+      }
+    }
+
+    .cta-button {
+      background-color: #e9fafd;
+      margin-top: 13px;
+      width: 248px;
+      max-width: 100%;
+      color: #013220;
+      padding: 24px 49px;
+      font: 500 32px Gilroy, sans-serif;
+      border: 4px solid #013220;
+      cursor: pointer;
+    }
+
+    @media (max-width: 991px) {
+      .cta-button {
+        padding: 24px 20px;
+      }
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+  <section class="hero-container">
+    <img
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/229f6bab0468710c2c8f56c685b90faa97b8995e7b92c92c769c9acbf823319f?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+      alt="" class="hero-background" />
+    <div class="hero-content">
+      <h1 class="hero-title">EcoRoots</h1>
+      <p class="hero-subtitle">Sustainable living simplified</p>
+      <button class="cta-button" tabindex="0">Shop Now</button>
+    </div>
+  </section>
+
+  <style>
+    .sustainable-categories {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      min-height: 998px;
+      width: 100%;
+      align-items: center;
+      color: #e9fafd;
+      text-align: center;
+      justify-content: center;
+      padding: 240px 80px;
+      font: 500 44px Gilroy, sans-serif;
+    }
+
+    .background-image {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .categories-container {
+      position: relative;
+      display: flex;
+      margin-bottom: -40px;
+      width: 100%;
+      max-width: 1445px;
+      flex-direction: column;
+    }
+
+    .categories-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .category-item {
+      border-radius: 30px;
+      background-color: #013220;
+      padding: 57px 70px;
+      border: 2px solid #013220;
+    }
+
+    .zero-waste {
+      width: 382px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      padding: 38px 70px 78px;
+    }
+
+    .bottom-row {
+      margin-top: 118px;
+    }
+
+    .sustainable-fashion {
+      width: 302px;
+    }
+
+    .personal-care {
+      padding: 61px 70px 106px;
+    }
+
+    @media (max-width: 991px) {
+      .sustainable-categories {
+        max-width: 100%;
+        padding: 100px 20px;
+      }
+
+      .categories-container {
+        max-width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .categories-row {
+        max-width: 100%;
+      }
+
+      .category-item {
+        max-width: 100%;
+        padding: 0 20px;
+      }
+
+      .bottom-row {
+        max-width: 100%;
+        margin-top: 40px;
+      }
+
+      .personal-care {
+        padding: 0 20px 100px;
+      }
+    }
+  </style>
+
+  <section class="sustainable-categories">
+    <img
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/87bae7198c889777440d24b07a759c4633bcffac6874d80746b8e261dd9d616b?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+      alt="" class="background-image" />
+    <div class="categories-container">
+      <div class="categories-row">
+        <h2 class="category-item">Sustainable Home Essentials</h2>
+        <h2 class="category-item zero-waste">Zero-Waste Products</h2>
       </div>
-    </section>
-  
-    <section class="flex relative flex-col justify-center items-center px-20 py-60 w-full text-5xl font-medium text-center text-cyan-50 min-h-[998px] max-md:px-5 max-md:py-24 max-md:max-w-full">
-      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/87bae7198c889777440d24b07a759c4633bcffac6874d80746b8e261dd9d616b?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="Background image showcasing eco-friendly products" class="object-cover absolute inset-0 size-full" />
-      <div class="flex relative flex-col -mb-10 w-full max-w-[1445px] max-md:mb-2.5 max-md:max-w-full">
-        <div class="flex flex-wrap gap-5 justify-between max-md:max-w-full">
-          <a href="#" class="px-16 py-14 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] max-md:px-5 max-md:max-w-full">Sustainable Home Essentials</a>
-          <a href="#" class="px-16 pt-10 pb-20 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[382px] max-md:px-5 max-md:max-w-full">Zero-Waste Products</a>
+      <div class="categories-row bottom-row">
+        <h2 class="category-item sustainable-fashion">Sustainable Fashion</h2>
+        <h2 class="category-item personal-care">Personal Care</h2>
+      </div>
+    </div>
+  </section>
+</header>
+
+<main>
+  <section
+    class="flex relative flex-col justify-center items-center px-20 py-52 mt-8 w-full font-thin text-center text-white min-h-[738px] max-md:px-5 max-md:py-24 max-md:max-w-full">
+    <img loading="lazy"
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/229f6bab0468710c2c8f56c685b90faa97b8995e7b92c92c769c9acbf823319f?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+      alt="Background image of sustainable products" class="object-cover absolute inset-0 size-full" />
+    <div class="flex relative flex-col items-center mb-0 ml-5 max-w-full w-[708px] max-md:mb-2.5">
+      <h1 class="self-stretch text-[176px] max-md:max-w-full max-md:text-4xl">EcoRoots</h1>
+      <p class="mt-10 text-5xl max-md:max-w-full max-md:text-4xl">Sustainable living simplified</p>
+      <a href="#"
+        class="px-12 py-6 mt-3.5 max-w-full text-3xl font-medium bg-cyan-50 border-4 border-solid border-emerald-950 text-emerald-950 w-[248px] max-md:px-5">Shop
+        Now</a>
+    </div>
+  </section>
+
+  <section
+    class="flex relative flex-col justify-center items-center px-20 py-60 w-full text-5xl font-medium text-center text-cyan-50 min-h-[998px] max-md:px-5 max-md:py-24 max-md:max-w-full">
+    <img loading="lazy"
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/87bae7198c889777440d24b07a759c4633bcffac6874d80746b8e261dd9d616b?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+      alt="Background image showcasing eco-friendly products" class="object-cover absolute inset-0 size-full" />
+    <div class="flex relative flex-col -mb-10 w-full max-w-[1445px] max-md:mb-2.5 max-md:max-w-full">
+      <div class="flex flex-wrap gap-5 justify-between max-md:max-w-full">
+        <a href="#"
+          class="px-16 py-14 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] max-md:px-5 max-md:max-w-full">Sustainable
+          Home Essentials</a>
+        <a href="#"
+          class="px-16 pt-10 pb-20 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[382px] max-md:px-5 max-md:max-w-full">Zero-Waste
+          Products</a>
+      </div>
+      <div class="flex flex-wrap gap-5 justify-between mt-28 max-md:mt-10 max-md:max-w-full">
+        <a href="#"
+          class="px-16 py-14 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] w-[302px] max-md:px-5 max-md:max-w-full">Sustainable
+          Fashion</a>
+        <a href="#"
+          class="px-16 pt-16 pb-28 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] max-md:px-5 max-md:pb-24 max-md:max-w-full">Personal
+          Care</a>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="flex flex-col justify-center items-center px-20 py-14 w-full text-center bg-stone-600 bg-opacity-80 max-md:px-5 max-md:max-w-full">
+    <div class="flex flex-col w-full max-w-[1606px] max-md:max-w-full">
+      <div class="flex flex-wrap gap-10 items-end text-6xl text-cyan-50 max-md:max-w-full max-md:text-4xl">
+        <div class="shrink-0 mt-11 max-w-full h-2 bg-cyan-50 border-4 border-white border-solid w-[456px] max-md:mt-10">
         </div>
-        <div class="flex flex-wrap gap-5 justify-between mt-28 max-md:mt-10 max-md:max-w-full">
-          <a href="#" class="px-16 py-14 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] w-[302px] max-md:px-5 max-md:max-w-full">Sustainable Fashion</a>
-          <a href="#" class="px-16 pt-16 pb-28 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] max-md:px-5 max-md:pb-24 max-md:max-w-full">Personal Care</a>
+        <h2 class="grow shrink self-stretch w-[365px] max-md:max-w-full max-md:text-4xl">BEST SELLERS</h2>
+        <div
+          class="shrink-0 mt-11 max-w-full h-2.5 bg-cyan-50 border-4 border-white border-solid w-[456px] max-md:mt-10">
         </div>
       </div>
-    </section>
-  
-    <section class="flex flex-col justify-center items-center px-20 py-14 w-full text-center bg-stone-600 bg-opacity-80 max-md:px-5 max-md:max-w-full">
-      <div class="flex flex-col w-full max-w-[1606px] max-md:max-w-full">
-        <div class="flex flex-wrap gap-10 items-end text-6xl text-cyan-50 max-md:max-w-full max-md:text-4xl">
-          <div class="shrink-0 mt-11 max-w-full h-2 bg-cyan-50 border-4 border-white border-solid w-[456px] max-md:mt-10"></div>
-          <h2 class="grow shrink self-stretch w-[365px] max-md:max-w-full max-md:text-4xl">BEST SELLERS</h2>
-          <div class="shrink-0 mt-11 max-w-full h-2.5 bg-cyan-50 border-4 border-white border-solid w-[456px] max-md:mt-10"></div>
-        </div>
-        <p class="self-center mt-3.5 text-4xl font-medium text-white max-md:max-w-full">Eco-Friendly Favorites Everyone Loves</p>
-      </div>
-    </section>
-  
-    <section class="flex flex-col self-center mt-9 w-full max-w-[1606px] max-md:max-w-full">
-      <div class="max-md:max-w-full">
-        <div class="flex gap-5 max-md:flex-col">
-          <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/d030c963fa66aff486b83f753947d83bbfe992d1ff19f29d32737e39f9781753?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="Eco-friendly product 1" class="object-contain grow w-full aspect-[0.83] max-md:mt-10 max-md:max-w-full" />
-          </div>
-          <div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/d3ce0c3eee7122cdf7aa8e99b40d39c366973bbf3533f974449ba27a2a768548?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="Eco-friendly product 2" class="object-contain grow w-full aspect-[0.83] max-md:mt-10 max-md:max-w-full" />
-          </div>
-          <div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8735eb16154a5655c706b912e47d4e0b2a4da7f57568fe87bb4b9b8b5a2c87c0?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="Eco-friendly product 3" class="object-contain grow w-full aspect-[0.83] max-md:mt-10 max-md:max-w-full" />
-          </div>
-        </div>
-      </div>
-      <div class="self-start mt-14 ml-5 text-3xl font-medium text-black max-md:mt-10 max-md:ml-2.5">
-        <h3>Handmade Natural Soap Bars</h3>
-        <p>$9</p>
-      </div>
-      <div class="flex flex-wrap gap-9 self-center px-12 py-11 mt-14 max-w-full text-5xl font-semibold bg-stone-500 bg-opacity-80 rounded-[45px] text-zinc-800 w-[956px] max-md:px-5 max-md:mt-10 max-md:text-4xl">
-        <p class="flex-auto w-[785px] max-md:max-w-full max-md:text-4xl">Swipe through for more exciting deals!</p>
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0cd246f0e11cc31c504b1a1582576b6a752b60d70daf59990aecc0af5c60bb17?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&" alt="Swipe icon" class="object-contain shrink-0 self-start mt-2 w-8 aspect-[0.8]" />
-      </div>
-    </section>
-  
-    <section class="flex flex-col justify-center items-center px-20 py-20 mt-8 w-full text-center bg-neutral-800 max-md:px-5 max-md:max-w-full">
-      <div class="flex flex-col w-full max-w-[1623px] max-md:max-w-full">
-        <h2 class="self-center text-4xl text-white">ABOUT US</h2>
-        <p class="mt-11 text-4xl text-cyan-50 max-md:mt-10 max-md:max-w-full">
-          At EcoRoots, we're passionate about making sustainable living simple and accessible for everyone. Our eco-friendly marketplace is dedicated to providing plastic-free, zero-waste products that help reduce your environmental footprint without compromising on quality or style. From everyday essentials to personal care items, each product in our collection is carefully curated to ensure it's ethically sourced, sustainable, and crafted with the planet in mind.
-          <br />
-          We believe that small changes can create a big impact, and our mission is to empower individuals to make conscious choices that protect the Earth for future generations. Join us in our journey towards a cleaner, greener world—one eco-friendly product at a time.
-        </p>
-      </div>
-    </section>
-  </main>
-  
-  <footer class="flex z-10 flex-col justify-center items-center px-16 py-44 -mt-1.5 w-full bg-stone-500 bg-opacity-80 max-md:px-5 max-md:py-24 max-md:max-w-full">
-    <div class="-mb-10 w-full max-w-[1624px] max-md:mb-2.5 max-md:max-w-full">
+      <p class="self-center mt-3.5 text-4xl font-medium text-white max-md:max-w-full">Eco-Friendly Favorites Everyone
+        Loves</p>
+    </div>
+  </section>
+
+  <section class="flex flex-col self-center mt-9 w-full max-w-[1606px] max-md:max-w-full">
+    <div class="max-md:max-w-full">
       <div class="flex gap-5 max-md:flex-col">
-        <div class="flex flex-col w-[22%] max-md:ml-0 max-md:w-full">
-          <div class="text-4xl text-white max-md:mt-10">
-            <h3 class="text-neutral-800">CONTACT US</h3>
-            <p class="text-3xl font-semibold text-neutral-800">+1(844)326-6000</p>
-            <p class="text-3xl font-semibold text-neutral-800">Email us: ecoroots@gmail.com</p>
-            <p class="text-3xl font-semibold text-neutral-800">Mon-Fri 9am-3pm IST</p>
-          </div>
+        <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+          <img loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d030c963fa66aff486b83f753947d83bbfe992d1ff19f29d32737e39f9781753?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+            alt="Eco-friendly product 1"
+            class="object-contain grow w-full aspect-[0.83] max-md:mt-10 max-md:max-w-full" />
         </div>
-        <nav class="flex flex-col ml-5 w-[22%] max-md:ml-0 max-md:w-full">
-          <div class="text-4xl text-white max-md:mt-10">
-            <h3 class="text-neutral-800">CUSTOMER</h3>
-            <ul class="text-3xl font-semibold text-neutral-800">
-              <li><a href="#">Start a Return</a></li>
-              <li><a href="#">Return Policy</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Catalogs and Mailers</a></li>
-            </ul>
-          </div>
-        </nav>
-        <nav class="flex flex-col ml-5 w-[16%] max-md:ml-0 max-md:w-full">
-          <div class="text-4xl text-white max-md:mt-10">
-            <h3 class="text-neutral-800">COMPANY</h3>
-            <ul class="text-3xl font-semibold text-neutral-800">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Sustainability</a></li>
-              <li><a href="#">Discover Revive</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div class="flex flex-col ml-5 w-[41%] max-md:ml-0 max-md:w-full">
-          <div class="flex flex-col grow text-4xl text-neutral-800 max-md:mt-10 max-md:max-w-full">
-            <h3>Get the latest news from us</h3>
-            <form class="mt-10">
-              <label for="emailInput" class="sr-only">Enter your email address</label>
-              <input type="email" id="emailInput" placeholder="Enter your email address" aria-label="Enter your email address" class="px-3.5 pt-2.5 pb-5 w-full border border-black border-solid text-emerald-950 max-md:pr-5 max-md:mt-10 max-md:max-w-full" />
-              <p class="mt-11 text-3xl max-md:mt-10 max-md:mr-2.5 max-md:max-w-full">
-                <span class="font-semibold text-neutral-800">By signing up, you agree to our </span>
-                <a href="#" class="font-semibold underline text-neutral-800">Privacy Policy</a>
-                <span class="font-semibold text-neutral-800"> and </span>
-                <a href="#" class="font-semibold underline text-neutral-800">Terms of Service.</a>
-              </p>
-              <button type="submit" class="self-start px-16 py-4 mt-14 text-3xl text-white whitespace-nowrap bg-emerald-950 max-md:px-5 max-md:mt-10">Subscribe</button>
-            </form>
-          </div>
+        <div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+          <img loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d3ce0c3eee7122cdf7aa8e99b40d39c366973bbf3533f974449ba27a2a768548?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+            alt="Eco-friendly product 2"
+            class="object-contain grow w-full aspect-[0.83] max-md:mt-10 max-md:max-w-full" />
+        </div>
+        <div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+          <img loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/8735eb16154a5655c706b912e47d4e0b2a4da7f57568fe87bb4b9b8b5a2c87c0?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+            alt="Eco-friendly product 3"
+            class="object-contain grow w-full aspect-[0.83] max-md:mt-10 max-md:max-w-full" />
         </div>
       </div>
     </div>
-  </footer>
+    <div class="self-start mt-14 ml-5 text-3xl font-medium text-black max-md:mt-10 max-md:ml-2.5">
+      <h3>Handmade Natural Soap Bars</h3>
+      <p>$9</p>
+    </div>
+    <div
+      class="flex flex-wrap gap-9 self-center px-12 py-11 mt-14 max-w-full text-5xl font-semibold bg-stone-500 bg-opacity-80 rounded-[45px] text-zinc-800 w-[956px] max-md:px-5 max-md:mt-10 max-md:text-4xl">
+      <p class="flex-auto w-[785px] max-md:max-w-full max-md:text-4xl">Swipe through for more exciting deals!</p>
+      <img loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/0cd246f0e11cc31c504b1a1582576b6a752b60d70daf59990aecc0af5c60bb17?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+        alt="Swipe icon" class="object-contain shrink-0 self-start mt-2 w-8 aspect-[0.8]" />
+    </div>
+  </section>
+
+  <section
+    class="flex flex-col justify-center items-center px-20 py-20 mt-8 w-full text-center bg-neutral-800 max-md:px-5 max-md:max-w-full">
+    <div class="flex flex-col w-full max-w-[1623px] max-md:max-w-full">
+      <h2 class="self-center text-4xl text-white">ABOUT US</h2>
+      <p class="mt-11 text-4xl text-cyan-50 max-md:mt-10 max-md:max-w-full">
+        At EcoRoots, we're passionate about making sustainable living simple and accessible for everyone. Our
+        eco-friendly marketplace is dedicated to providing plastic-free, zero-waste products that help reduce your
+        environmental footprint without compromising on quality or style. From everyday essentials to personal care
+        items, each product in our collection is carefully curated to ensure it's ethically sourced, sustainable, and
+        crafted with the planet in mind.
+        <br />
+        We believe that small changes can create a big impact, and our mission is to empower individuals to make
+        conscious choices that protect the Earth for future generations. Join us in our journey towards a cleaner,
+        greener world—one eco-friendly product at a time.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer
+  class="flex z-10 flex-col justify-center items-center px-16 py-44 -mt-1.5 w-full bg-stone-500 bg-opacity-80 max-md:px-5 max-md:py-24 max-md:max-w-full">
+  <div class="-mb-10 w-full max-w-[1624px] max-md:mb-2.5 max-md:max-w-full">
+    <div class="flex gap-5 max-md:flex-col">
+      <div class="flex flex-col w-[22%] max-md:ml-0 max-md:w-full">
+        <div class="text-4xl text-white max-md:mt-10">
+          <h3 class="text-neutral-800">CONTACT US</h3>
+          <p class="text-3xl font-semibold text-neutral-800">+1(844)326-6000</p>
+          <p class="text-3xl font-semibold text-neutral-800">Email us: ecoroots@gmail.com</p>
+          <p class="text-3xl font-semibold text-neutral-800">Mon-Fri 9am-3pm IST</p>
+        </div>
+      </div>
+      <nav class="flex flex-col ml-5 w-[22%] max-md:ml-0 max-md:w-full">
+        <div class="text-4xl text-white max-md:mt-10">
+          <h3 class="text-neutral-800">CUSTOMER</h3>
+          <ul class="text-3xl font-semibold text-neutral-800">
+            <li><a href="#">Start a Return</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Catalogs and Mailers</a></li>
+          </ul>
+        </div>
+      </nav>
+      <nav class="flex flex-col ml-5 w-[16%] max-md:ml-0 max-md:w-full">
+        <div class="text-4xl text-white max-md:mt-10">
+          <h3 class="text-neutral-800">COMPANY</h3>
+          <ul class="text-3xl font-semibold text-neutral-800">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Discover Revive</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="flex flex-col ml-5 w-[41%] max-md:ml-0 max-md:w-full">
+        <div class="flex flex-col grow text-4xl text-neutral-800 max-md:mt-10 max-md:max-w-full">
+          <h3>Get the latest news from us</h3>
+          <form class="mt-10">
+            <label for="emailInput" class="sr-only">Enter your email address</label>
+            <input type="email" id="emailInput" placeholder="Enter your email address"
+              aria-label="Enter your email address"
+              class="px-3.5 pt-2.5 pb-5 w-full border border-black border-solid text-emerald-950 max-md:pr-5 max-md:mt-10 max-md:max-w-full" />
+            <p class="mt-11 text-3xl max-md:mt-10 max-md:mr-2.5 max-md:max-w-full">
+              <span class="font-semibold text-neutral-800">By signing up, you agree to our </span>
+              <a href="#" class="font-semibold underline text-neutral-800">Privacy Policy</a>
+              <span class="font-semibold text-neutral-800"> and </span>
+              <a href="#" class="font-semibold underline text-neutral-800">Terms of Service.</a>
+            </p>
+            <button type="submit"
+              class="self-start px-16 py-4 mt-14 text-3xl text-white whitespace-nowrap bg-emerald-950 max-md:px-5 max-md:mt-10">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

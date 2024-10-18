@@ -1,202 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login Page{% endblock title %}
+
+{% block style %}
 <style>
-  /* Overall Login Page Styling */
-  .login-page {
-    background-color: #d6d4cd; /* Set background similar to the image */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 0;
-    position: relative;
-  }
-
-  /* Header Styling */
-  .header {
-    display: flex;
-    align-items: left;
-    justify-content: space-between;
+  body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 200;
     width: 100%;
-    padding: 20px 40px;
-    background-color: #18291e; /* Dark green header */
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 100%;
+    overflow: hidden;
+    background-image: url(' {% static "\images\bg-login.png" %}');
+    background-size: cover;
   }
 
-  .logo {
-    width: 40px; /* Adjust logo size */
-    height: auto;
+  ::-webkit-scrollbar {
+    display: none;
   }
 
-  .brand-name {
-    color: #fff;
-    font-family: 'Arial', sans-serif;
-    font-size: 24px;
-    margin-left: 15px;
-    font-weight: 600;
+  .field {
+    padding: 2px;
   }
 
-  /* Main Container for the Form */
-  .login-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #f5f3eb; /* Light beige background */
-    padding: 50px 40px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    width: 400px; /* Set fixed width for desktop */
-  }
-
-  .background-image {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 500px;
-    height: auto;
-    opacity: 0.9;
-  }
-
-  /* Welcome Title Styling */
-  .welcome-title {
-    color: #000;
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    text-align: left;
-  }
-
-  /* Instruction Text */
-  .login-instruction {
-    color: #595959;
-    font-size: 14px;
-    margin-bottom: 30px;
-    text-align: left;
-  }
-
-  /* Label Styling */
-  label {
-    font-weight: 500;
-    color: #000;
-    font-size: 14px;
-  }
-
-  /* Input Fields */
-  .email-input,
-  .password-input {
-    width: 100%;
-    padding: 15px;
-    margin-top: 8px;
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
-    background-color: #fff;
-    font-size: 14px;
-  }
-
-  /* Password Container */
-  .password-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-  }
-
-  /* Forgot Password Link */
-  .forgot-password {
-    color: #0f7eed;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    margin-left: auto;
-  }
-
-  /* Remember Me Section */
-  .remember-me {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-  }
-
-  .checkbox {
-    width: 18px;
-    height: 18px;
-    margin-right: 10px;
-  }
-
-  .remember-text {
-    font-size: 14px;
-    color: #000;
-  }
-
-  /* Login Button */
-  .login-button {
-    background-color: #000;
-    color: #fff;
-    font-size: 16px;
-    padding: 15px 0;
+  .button {
+    background-color: Black;
+    color: white;
+    width: 9em;
+    height: 2em;
+    font-size: 1.0rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+  }
+
+  .nav-link {
+    margin-left: 40px;
+    font-size: 17px;
+  }
+
+  .profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     cursor: pointer;
-    width: 100%;
-    margin-top: 30px;
   }
 
-  .login-button:hover {
-    background-color: #333;
-  }
-
-  @media (max-width: 991px) {
-    /* Responsive adjustments for smaller screens */
-    .login-container {
-      width: 90%;
-      padding: 30px;
-    }
-
-    .welcome-title {
-      font-size: 22px;
-    }
-
-    .login-button {
-      padding: 12px 0;
-    }
-
-    .background-image {
-      width: 500px;
-    }
+  .dropdown-menu {
+    right: 0;
+    left: auto;
   }
 </style>
-<section class="login-page">
-  <!-- Header with Logo and Brand Name -->
-  <header class="header">
-    <img src="Eco_products/Eco_webapp/static/images/Aesthetic Plant Background.jpeg" alt="EcoRoots Logo" class="logo" />
-    <h1 class="brand-name">EcoRoots</h1>
-  </header>
+{% endblock style %}
 
-  <!-- Login Container -->
-  <div class="login-container">
-    <h2 class="welcome-title">Welcome Back!</h2>
-    <p class="login-instruction">Please enter your details</p>
+{% block content %}
+{% include "navbar.html" %}
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="p-5 ml-3" style="font-size: 58px">
+      <b>Welcome Back!</b>
+    </h1>
+    <form class="row col-md-6 ml-5" method="post">
 
-    <!-- Email Field -->
-    <label for="email" class="email-label">Email Address</label>
-    <input type="email" id="email" class="email-input" placeholder="Enter your email" required />
+      <div class="field form-group col-md-12">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input style="border:2px solid Grey;" type="email" name="email" class="form-control"
+          placeholder="Enter your email" id="inputEmail4" required />
+      </div>
 
-    <!-- Password Field -->
-    <div class="password-container">
-      <label for="password" class="password-label">Password</label>
-      <a href="#" class="forgot-password">Forgot password?</a>
-    </div>
-    <input type="password" id="password" class="password-input" placeholder="Password" required />
+      <div class="field form-group col-md-12">
+        <label for="inputPassword4">Password</label>
+        <input style="border:2px solid Grey;" type="password" class="form-control" id="inputPassword4"
+          placeholder="Enter the Password" />
+      </div>
 
-    <!-- Remember Me -->
-    <div class="remember-me">
-      <input type="checkbox" id="remember" class="checkbox" />
-      <label for="remember" class="remember-text">Remember for 30 days</label>
-    </div>
+      <div class="field pt-5 col-md-12">
+        <button type="submit" name="submit_button" class="button w-100">
+          Login
+        </button>
+      </div>
 
-    <!-- Login Button -->
-    <button type="submit" class="login-button">Login</button>
+    </form>
   </div>
+</div>
+{% endblock content %}
 
-  <!-- Background Image -->
-  <img src="your-background-image-url-here.png" alt="Background Leaves" class="background-image" />
-</section>
+<!--
+<h1>LOGIN PAGE</h1>
+
+<form method="post" >
+    {% csrf_token %}
+    <label for="fname">Name:</label><br>
+    <input type="text" id="fname" name="name"><br>
+    <label for="pwd">Password:</label><br>
+    <input type="password" id="pwd" name="pwd"><br>
+    <input type="submit" value="Submit"><br>
+    <p>Don't have an account? <a href= "{% url 'register' %}" >Register</a></p>
+</form>
+
+{% if messages %}
+  {% for msg in messages %}
+    {{msg}}
+  {% endfor %}
+{% endif %}
+
+-->

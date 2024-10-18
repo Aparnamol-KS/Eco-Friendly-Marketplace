@@ -63,4 +63,10 @@ def register_user(request):
 
 
     
+def product_listing(request):
+    return render(request,'product_listing.html',context={})
+
+def product_detail(request):
+    return render(request,'single_product_view.html',context={})
+
 
