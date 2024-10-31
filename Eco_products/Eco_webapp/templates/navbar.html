@@ -2,20 +2,21 @@
 <header>
   <div class="row">
     <nav class="navbar navbar-expand-lg navbar-light col-md-12 p-3 "
-      style="background-color: #18291e; font-family: Gilroy;">
+      style="background-color: #18291e; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
       <div style="padding:2px;">
-        <a class="navbar-brand text-white pl-4 align-center" style="font-size: 30px; " href="#">
-          <img src=" {% static 'images\logo.png' %} " width="40" height="20" class=" d-inline-block "
-            style="padding-right:8px; color: white;" alt="" />
-          EcoRoots
+        <a class="navbar-brand text-white pl-4 align-center dancing-script-font" style="font-size: 37px; "
+            href="#">
+            <img src="{% static 'images\logo.png' %}" width="40" height="20" class="d-inline-block " style="padding-right:8px;"
+                alt="" />
+            EcoRoots
         </a>
-      </div>
+    </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav ml-auto mr-5">
+        <ul class="navbar-nav ml-auto ">
           <li class="nav-item active">
             <a class="text-white nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -23,22 +24,45 @@
             <a class="text-white nav-link " href="#">Shop</a>
           </li>
           <li class="nav-item">
-            <a class="text-white nav-link" href="#">Cart</a>
+            <a class="text-white nav-link" href=" {% url 'cart' %} ">Cart</a>
           </li>
-          <li class="nav-item">
-            <a class="text-white nav-link" href="#">Wishlist</a>
+          <li class="nav-item mr-4">
+            <a class="text-white nav-link" href="{% url 'wishlist' %}">Wishlist</a>
           </li>
         </ul>
       </div>
+
+      {% if user.is_authenticated %}
       <div class="dropdown mr-5">
         <img src=" {% static 'images\bg-register.png' %} " alt="Profile Image" class="profile-img" id="profileDropdown"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
-          <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+          <a class="dropdown-item" href=" {% url 'logout' %} ">Logout</a>
           <a class="dropdown-item" href="#">Any Action</a>
         </div>
       </div>
+      {% else %}
+      <div class="log">
+        
+        <ul class="navbar-nav  mr-5">
+          <li class="nav-item active">
+            <a href="{% url 'login' %}" class="text-white nav-link">
+              <b>Login</b>
+          </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'register' %}" class="text-white nav-link">
+              <b>Register</b>
+          </a>
+          </li>
+        </ul>
+    </div>
+      {% endif %}
+
+
+
+
     </nav>
   </div>
 </header>

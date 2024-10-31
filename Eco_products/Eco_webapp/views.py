@@ -1,9 +1,8 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import UserDetails
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def get_home_page(request):
@@ -35,27 +34,29 @@ def login_user(request):
         return render(request,'login.html',context={})
 
 
+
 def register_user(request):
     if request.method == 'POST':
         name = request.POST['name1']
         email = request.POST['email']
-        password = request.POST['password'] 
+        password = request.POST['password']
         
-        if UserDetails.objects.filter(email=email).exists():
+        # Check if the email is already registered
+        if User.objects.filter(email=email).exists():
             messages.error(request, 'This email is already registered.')
             return redirect('register')
         
-        # Assign a default role, for example, 'Buyer'
-        default_role = 'Buyer'
-        
-        # Create a new CustomUser entry
-        custom_user = UserDetails.objects.create(
-            name=name,
+        # Create a new user and set the password securely
+        user = User.objects.create_user(
+            username=name,
             email=email,
-            password=password,
-            role=default_role
+            password=password  
         )
-        custom_user.save()
+        
+        # Save the user
+        user.save()
+        
+        # Success message and redirect to login
         messages.success(request, 'User registered successfully!')
         return redirect('login')
     
@@ -70,3 +71,32 @@ def product_detail(request):
     return render(request,'single_product_view.html',context={})
 
 
+
+def logout_user(request):
+    logout(request)  
+    return redirect('login')  
+
+def cart_view(request):
+    return render(request,'cart.html',context={})
+
+def wishlist_view(request):
+    return render(request,'wishlist.html',context={})
+
+@login_required  
+def profile_view(request):
+    if request.method == 'POST':
+        username = request.POST.get("name2")  
+        email = request.POST.get("email2")
+        
+        # Update the current user's username and email
+        request.user.username = username
+        request.user.email = email
+        
+        # Save the user instance to the database
+        request.user.save()
+        
+        messages.success(request, 'Profile Updated Successfully!')
+        return redirect('profile')
+    else:
+        context = {'user': request.user}  # Pass the user object to the template
+        return render(request, 'profile.html', context)
