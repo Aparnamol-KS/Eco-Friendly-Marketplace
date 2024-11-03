@@ -2,6 +2,14 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=255, blank=True, null=True)
+    photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
+    
 class Product(models.Model):
     product_id = models.CharField(max_length=10, unique=True, primary_key=True)
     product_name = models.CharField(max_length=255)
@@ -52,6 +60,13 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.order_id} by {self.buyer.username}" 
+    
+class orderedItems(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_items')
+    product_name = models.CharField(max_length=255)
+    price = models.PositiveIntegerField()
+    product_id = models.CharField(max_length=10)
+    product_image = models.ImageField(upload_to='images/',null=True)
 
 
 class Eco_certifications(models.Model):
@@ -61,6 +76,8 @@ class Eco_certifications(models.Model):
 
     def __str__(self):
         return self.certification_name
+
+
 
 
 

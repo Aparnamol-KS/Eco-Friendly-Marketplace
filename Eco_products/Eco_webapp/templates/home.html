@@ -2,6 +2,28 @@
 {% load static %}
 {% block style %}
 <style>
+    nav ul li.active a {
+    text-decoration: none;
+    /* This will underline the active link */
+    font-weight: bolder;
+    background-color: black;
+    border-radius: 10px;
+    width:60%;
+    font-family: "Alegreya", serif;
+  }
+
+  .navbar-light .navbar-nav .active>.nav-link,
+  .navbar-light .navbar-nav .nav-link.active,
+  .navbar-light .navbar-nav .nav-link.show,
+  .navbar-light .navbar-nav .show>.nav-link{
+    color: white;
+  }
+  .navbar-light .navbar-nav .nav-link  {
+    color:black;
+  }
+  .navbar-light:hover .navbar-nav:hover .nav-link:hover{
+    color:whit;
+  }
   .dancing-script-font {
     font-family: "Dancing Script", cursive;
     font-optical-sizing: auto;
@@ -61,7 +83,9 @@
 
   .nav-link {
     margin-left: 45px;
-    font-size: 20px;
+    font-size: 19px;
+    font-weight:bold;
+    font-family: "Alegreya", serif;
   }
 
 
@@ -197,7 +221,7 @@
 {% block content %}
 <header>
   <div class="row">
-    <nav class="navbar navbar-expand-lg navbar-light col-md-12 p-3 " style="background-color: #E9FAFD; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+    <nav class="navbar navbar-expand-lg navbar-light col-md-12 p-3" style="background-color: #E9FAFD; ">
       <div style="padding:2px;">
         <a class="navbar-brand pl-4 align-center" style="font-size: 30px; " href="#">
           <img src=" {% static 'images\assets\vector.png' %} " width="45" height="25" class="d-inline-block "
@@ -209,24 +233,27 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav ml-auto mr-4">
-          <li class="nav-item active">
-            <a class=" nav-link" href="{% url 'home' %}">Home </a>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+            <a class=" nav-link" href=" {% url 'home' %} ">Home </a>
           </li>
-          <li class="nav-item active">
-            <a class=" nav-link " href='#shop'>Shop</a>
+          <li class="nav-item {% if request.path == '#shop' %}active{% endif %}">
+            <a class=" nav-link " href="#shop">Shop</a>
           </li>
-          <li class="nav-item active">
-            <a class=" nav-link" href=" {% url 'cart' %} ">Cart</a>
+          <li class="nav-item {% if request.path == '/cart' %}active{% endif %}">
+            <a class=" nav-link test" href=" {% url 'cart' %} ">Cart</a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item {% if request.path == '/cart/order_summary/' %}active{% endif %}">
+            <a class="  nav-link " href=" {% url 'order_summary' %} ">My orders</a>
+          </li>
+          <li class="nav-item mr-5  {% if request.path == '/wishlist' %}active{% endif %}">
             <a class=" nav-link" href="{% url 'wishlist' %}">Wishlist</a>
           </li>
         </ul>
       </div>
       {% if user.is_authenticated %}
       <div class="dropdown mr-5">
-        <img src=" {% static 'images\bg-register.png' %} " alt="Profile Image" class="profile-img" id="profileDropdown"
+        <img src='{{ user_profile_pic|default:"bulbs.jpeg" }}' alt="Profile Image" class="profile-img" id="profileDropdown"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
           <a class="dropdown-item" href=" {% url 'profile' %}">Profile</a>
@@ -352,16 +379,14 @@
           <img src="{% static '\images\soaps.jpeg' %} " class="img-fluid rounded mt-3"
             style="height:450px; width:400px;" alt="Responsive image">
           <div class="row pt-2">
-            <div class="col-md-9">
+            <div class="col-md-10">
               <h1 style="font-size: 17.5px; ">Handmade Natural Soap Bars</h1>
             </div>
-            <div class="col-md-3  icon">
-              <i class="fas fa-shopping-cart"></i> <i class="fa-regular fa-heart"></i>
+            <div class="col-md-2">
+              <p style="color:green; font-size: 19px;">$9</p>
             </div>
           </div>
-          <div>
-            <p style="color:green; font-size: 19px;">$9</p>
-          </div>
+          
 
 
         </div>
@@ -371,14 +396,14 @@
           <img src=" {% static '\images\Beeswax-Wrap.jpeg' %} " class="img-fluid rounded mt-3"
             style="height:450px; width:400px;" alt="Responsive image">
           <div class="row pt-2">
-            <div class="col-md-9">
+            <div class="col-md-10">
               <h1 style="font-size: 17.5px; ">Beeswax Wraps</h1>
             </div>
-            <div class="col-md-3 icon"><i class="fas fa-shopping-cart"></i> <i class="fa-regular fa-heart"></i></div>
+            <div class="col-md-2">
+              <p style="color:green; font-size: 19px;">$15</p>
+            </div>
           </div>
-          <div>
-            <p style="color:green; font-size: 19px;">$15</p>
-          </div>
+          
 
         </div>
 
@@ -387,15 +412,15 @@
           <img src=" {% static '\images\tote-bag.jpeg' %} " class="img-fluid rounded mt-3"
             style="height:450px; width:400px;" alt="Responsive image">
           <div class="row pt-2">
-            <div class="col-md-9">
+            <div class="col-md-10">
               <h1 style="font-size: 17.5px; ">Organic Cotton Tote Bags</h1>
             </div>
-            <div class="col-md-3 icon"><i class="fas fa-shopping-cart"></i> <i class="fa-regular fa-heart"></i></div>
+            <div class="col-md-2">
+              <p style="color:green; font-size: 19px;">$12</p>
+            </div>
 
           </div>
-          <div>
-            <p style="color:green; font-size: 19px;">$12</p>
-          </div>
+          
 
         </div>
 

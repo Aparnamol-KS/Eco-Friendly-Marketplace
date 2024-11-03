@@ -3,19 +3,6 @@
 
 {% block style %}
 <style>
-  .dancing-script-font {
-    font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-  }
-
-  .alegreya-font {
-    font-family: "Alegreya", serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-  }
 
   .view-link:hover,
   .view-link {
@@ -41,10 +28,9 @@
   }
 
   body {
-    font-family: Gilroy;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     background-color: #E9FAFD;
     ;
   }
@@ -100,19 +86,25 @@
     right: 0;
     left: auto;
   }
+  .cross-link:hover,
+  .cross-link {
+    text-decoration: none;
+    color: black;
+  }
 </style>
 {% endblock style %}
 
 {% block content %}
 {% include "navbar.html" %}
 <section>
-  <div class="w-100">
-    <h1 class=" text-white w-100 p-3 pl-5"
-      style="font-weight:200; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 30px; background-color: #18291e;">
-      {{heading}}</h1>
-  </div>
+  
   <div class="container-fluid px-5">
     <div class="row px-5">
+      <div class="w-100 text-center">
+        <h1 class=" w-100 p-3"
+          style="font-weight:bold; font-size: 40px; ">
+          {{heading}}</h1>
+      </div>
       {% for product in products %}
       <div class="col-md-4 ">
 
@@ -142,7 +134,10 @@
           <div class="col-md-7">
             <p style="color:green; font-size: 19px;">${{product.price}}</p>
           </div>
-          <div class="col-md-5  icon"><i class="fas fa-shopping-cart"></i> <i class="fa-regular fa-heart"></i></div>
+          <div class="col-md-5  icon">
+            <a class="cross-link" href=" {% url 'add_to_cart' product.product_id %} "><i class="fas fa-shopping-cart"></i></a> 
+            <a class="cross-link" href=" {% url 'add_to_wishlist' product.product_id %}"><i class="fa-regular fa-heart"></i></a>
+          </div>
         </div>
       </div>
       {% endfor %}

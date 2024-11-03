@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from Eco_webapp.models import Product,Cart,Wishlist,Order
+from Eco_webapp.models import Product,Cart,Wishlist,Order,orderedItems,UserProfile
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum, F
 
@@ -43,26 +43,32 @@ def register_user(request):
         name = request.POST['name1']
         email = request.POST['email']
         password = request.POST['password']
+        address = request.POST['address']
+        image = request.FILES['photo'] 
         
-        # Check if the email is already registered
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'This email is already registered.')
+        try:
+            # Create a new user and set the password securely
+            user = User.objects.create_user(
+                username=name,
+                email=email,
+                password=password  
+            )
+
+            # Create UserProfile associated with the user
+            userprofile = UserProfile.objects.create(
+                user=user,  # Use the user object here
+                address=address,
+                photo=image
+            )
+
+            # Success message and redirect to login
+            messages.success(request, 'User registered successfully!')
+            return redirect('login')
+
+        except Exception as e:
+            messages.error(request, f"An error occurred: {str(e)}")
             return redirect('register')
-        
-        # Create a new user and set the password securely
-        user = User.objects.create_user(
-            username=name,
-            email=email,
-            password=password  
-        )
-        
-        # Save the user
-        user.save()
-        
-        # Success message and redirect to login
-        messages.success(request, 'User registered successfully!')
-        return redirect('login')
-    
+
     return render(request, 'register.html')
 
 
@@ -97,7 +103,7 @@ def product_detail(request,product_id):
     return render(request,'single_product_view.html',{'product':product, 'heading':category_heading})
 
 
-
+@login_required
 def logout_user(request):
     logout(request)  
     return redirect('login')  
@@ -114,22 +120,41 @@ def wishlist_view(request):
 
 @login_required  
 def profile_view(request):
+    # Get the user's profile (if it exists)
+    user_profile = UserProfile.objects.get(user=request.user)
+
     if request.method == 'POST':
         username = request.POST.get("name2")  
         email = request.POST.get("email2")
-        
+        address = request.POST.get("address")  
+        image = request.FILES.get("photo")  
+
         # Update the current user's username and email
         request.user.username = username
         request.user.email = email
-        
+
         # Save the user instance to the database
         request.user.save()
-        
+
+        # Update the user's profile information
+        user_profile.address = address
+        if image:  # Check if a new image is uploaded
+            user_profile.photo = image
+            
+        # Save the user profile instance to the database
+        user_profile.save()
+
         messages.success(request, 'Profile Updated Successfully!')
         return redirect('profile')
+
     else:
-        context = {'user': request.user}  # Pass the user object to the template
+        context = {
+            'user': request.user,  # Pass the user object to the template
+            'address': user_profile.address,  # Pass the address from the user profile
+            'photo': user_profile.photo,  # Pass the photo from the user profile
+        }
         return render(request, 'profile.html', context)
+
     
 @login_required
 def add_to_cart(request,product_id):
@@ -139,40 +164,51 @@ def add_to_cart(request,product_id):
     # Check if the product is already in the user's cart
     cart_item,created= Cart.objects.get_or_create(buyer=buyer, product=product)
 
-    if not created:
-        cart_item.save()
-    return redirect('cart')
+    if created:
+        messages.success(request, 'Added to Cart')
+    else:
+        messages.info(request, 'This product is already in your Cart.')
+
+    return redirect('product_detail', product_id=product_id)
 
 @login_required
 def delete_cart_item(request,product_id):
     cart_item = get_object_or_404(Cart, product__product_id=product_id, buyer=request.user)
     cart_item.delete()
+    messages.success(request, 'Removed from Cart')
     return redirect('cart')  
 
+@login_required
 def add_to_wishlist(request,product_id):
     user = request.user
     product = get_object_or_404(Product,product_id = product_id)
 
     wishlist_item,created= Wishlist.objects.get_or_create(user=user, product=product)
-    if not created:
-        wishlist_item.save()
-    return redirect('wishlist')
+    if created:
+        messages.success(request, 'Added to Wishlist')
+    else:
+        messages.info(request, 'This product is already in your Wishlist.')
 
+    return redirect('product_detail', product_id=product_id)
+
+@login_required
 def delete_wishlist_item(request,product_id):
     wishlist_item = get_object_or_404(Wishlist, product__product_id=product_id, user=request.user)
     wishlist_item.delete()
+    messages.success(request, 'Removed from Wishlist')
     return redirect('wishlist')  
+    
 
+@login_required
 def checkout(request):
     if request.method == 'POST':
         # Get the user's cart items
         user_cart_items = Cart.objects.filter(buyer=request.user)
 
         if not user_cart_items.exists():
-            # If no items in the cart, return or show an error message
             return redirect('cart')  # Redirect back to cart if no items
 
-        # Calculate the total amount from the cart
+        # Calculate the total amount
         total_amount = user_cart_items.aggregate(total=Sum(F('product__price')))['total'] or 0
 
         # Create the order
@@ -182,41 +218,70 @@ def checkout(request):
             status='Pending'
         )
 
-        # Link the cart items to the order and update stock
+        # Create order items (copy details from cart)
         for cart_item in user_cart_items:
-            order.cart_items.add(cart_item)  # Add cart items to the order
-            cart_item.product.stock -= 1  # Update stock based on quantity
-            cart_item.product.save()  # Save the product with updated stock
+            orderedItems.objects.create(
+                order=order,
+                product_name=cart_item.product.product_name,
+                price=cart_item.product.price,
+                product_id=cart_item.product.product_id,
+                product_image = cart_item.product.product_image
+            )
 
-        order.save()
+            # Reduce stock of the product
+            cart_item.product.stock -= 1
+            cart_item.product.save()
 
-        # After creating the order, you may want to clear the cart
-        #user_cart_items.delete()
+        # Clear the user's cart
+        user_cart_items.delete()
 
-        # Redirect to the order summary or orders page
-        return redirect('order_summary', order_id=order.order_id)  # Redirect to order summary page
+        # Redirect to the order summary page
+        return redirect('order_summary')
 
-    return render(request, 'orders.html')
+    return render(request,'orders.html')
 
 
+
+@login_required
+def order_summary(request):
+    
+    # Get all orders for the logged-in user
+    orders = Order.objects.filter(buyer=request.user).prefetch_related('order_items')
+
+     # Check if there are no orders
+    if not orders.exists():
+        context = {
+            'order_details': None,  # No orders to display
+            'message': 'No orders found.',  # Optional message for no orders
+        }
+        return render(request, 'orders.html', context)
     
 
-def order_summary(request,order_id):
-    order = get_object_or_404(Order, order_id=order_id, buyer=request.user)
+    # Prepare data for each order
+    order_details = []
+    for order in orders:
+        # Get the associated UserProfile to access the address
+        user_profile = UserProfile.objects.get(user=order.buyer)
+        
+        # Calculate the total price for each order
+        total_price = sum(item.price for item in order.order_items.all())
+        order.total_price = total_price
 
     context = {
-        'order': order,
-        'cart_items': order.cart_items.all(),  # Cart items associated with the order
-        'total_amount': order.total_amount,
-        'status': order.status,
-        'order_date': order.order_date,
+        'orders': orders,
+        'shipping_address': user_profile.address
     }
     return render(request, 'orders.html', context)
 
+@login_required
+def delete_order(request, order_id):
+    # Fetch the order item; ensure you're referring to the correct model
+    order_item = get_object_or_404(Order, order_id=order_id, buyer=request.user)  # Changed from 'orderedItems' to 'Order'
+    
+    # Delete the order
+    order_item.delete()
+    
+    # Redirect to the order summary page
+    return redirect('order_summary') 
 
-def sample(request):
-    students = Product.objects.all()
-    context = {
-        'all_students':students
-    }
-    return render(request,'sample.html',context = context)
+

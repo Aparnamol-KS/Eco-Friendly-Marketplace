@@ -3,20 +3,6 @@
 
 {% block style %}
 <style>
-    .dancing-script-font {
-        font-family: "Dancing Script", cursive;
-        font-optical-sizing: auto;
-        font-weight: 500;
-        font-style: normal;
-    }
-
-    .alegreya-font {
-        font-family: "Alegreya", serif;
-        font-optical-sizing: auto;
-        font-weight: 600;
-        font-style: normal;
-    }
-
     body {
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         width: 100%;
@@ -109,45 +95,39 @@
 
 
 <section>
-    <div class="w-100">
-        <h1 class=" text-white w-100 p-3 pl-5"
-            style="font-weight:200; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 35px; background-color: #18291e;">
-            My orders</h1>
-    </div>
-
     <div class="container-fluid">
         <div class="row m-4 p-3">
             <div class="col-md-12">
 
+                {% for order in orders %}
 
                 <div class="card mt-2 p-5">
 
                     <div class="col-md-12 ">
                         <h1><b>OrderID : {{order.order_id}}<br></b></h1>
-                        <p style="color: #18291e; font-size: 18px;"><i>Order date : {{order_date}}</i><br>
-                            <span style="color:grey"><i><b>Status :</b></span> {{status}}</i><br>
-                            <span style="color:grey"><i><b>Shipping Address: </b></span>123 Street Mumbai</i>
+                        <p style="color: #18291e; font-size: 18px;"><i>Order date : {{order.order_date}}</i><br>
+                            <span style="color:grey"><i><b>Status :</b></span> {{order.status}}</i><br>
+                            <span style="color:grey"><i><b>Shipping Address: </b></span>{{shipping_address}}</i>
                         </p>
                     </div>
 
 
                     <div class="row pt-3 ">
 
-                        {% for item in cart_items %}
+                        {% for item in order.order_items.all %}
     
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 pt-3">
                             <div class="card"
                                 style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                 <div class="row">
                                     <div class="col-md-4 text-center p-4 pl-5">
-                                        <img src=" {{ item.product.product_image.url }} " style="height:8rem; width:8rem;" class=" rounded">
+                                        <img src=" {{ item.product_image.url }} " style="height:8rem; width:8rem;" class=" rounded">
                                     </div>
-                                    <div class="col-md-8 p-3 pl-4 ">
+                                    <div class="col-md-8 pl-5 my-auto">
                                         <div class="card-body">
-                                            <h6 class="card-title mb-3">{{ item.product.product_name }}</h6>
-                                            <h5 style="color:#18291e">${{item.product.price}}</h5>
-                                            <p><span style="color:grey">Stock :</span> {{item.product.stock}}</p>
+                                            <h6 class="card-title mb-3">{{ item.product_name }}</h6>
+                                            <h5 style="color:#18291e">${{item.price}}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -160,18 +140,23 @@
                     </div>
                     <div class="row pt-5 pl-4">
                         <div class="col-md-9">
-                            <p style="font-size: 18px;"><strong>Total Price : <span
-                                        style="color: green;">${{total_amount}}</span></strong></p>
+                            <p style="font-size: 25px;"><strong>Total Price : <span
+                                        style="color: green;">${{ order.total_price }}</span></strong></p>
                         </div>
                         <div class="col-md-3">
+                            <form action=" {% url 'delete_order' order.order_id %}">
                             <button type="submit" name="submit_button" class="button w-100">
                                 Cancel Order
                             </button>
+                        </form>
                         </div>
                     </div>
                 </div>
 
 
+                {% empty %}
+                    <h1 class="text-center p-5">You haven't placed any orders yet</h1>
+                {% endfor %}
 
 
 

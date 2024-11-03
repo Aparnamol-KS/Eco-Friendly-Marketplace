@@ -3,19 +3,6 @@
 
 {% block style %}
 <style>
-    .dancing-script-font {
-        font-family: "Dancing Script", cursive;
-        font-optical-sizing: auto;
-        font-weight: 500;
-        font-style: normal;
-    }
-
-    .alegreya-font {
-        font-family: "Alegreya", serif;
-        font-optical-sizing: auto;
-        font-weight: 600;
-        font-style: normal;
-    }
 
     body {
         font-family: Gilroy;
@@ -106,13 +93,17 @@
 {% block content %}
 {% include "navbar.html" %}
 <section>
-    <div class="w-100">
-        <h1 class=" text-white w-100 p-3 pl-5"
-            style="font-weight:200; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 35px; background-color: #18291e;">
-            Wishlist</h1>
-    </div>
 
-    <div class="container-fluid alegreya-font" >
+    {% if messages %}
+    {% for msg in messages %}
+    <div class="alert alert-info w-100" role="alert">
+        {{msg}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="container-fluid alegreya-font">
+
+        {% if wishlist_items %}
         <div class="row mt-4   ">
             <div class="col-md-4">
                 <h4 class="text-center"><b>Product</b></h4>
@@ -127,7 +118,9 @@
 
         </div>
 
+
         <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+        {% endif %}
         {% for item in wishlist_items %}
 
 
@@ -174,6 +167,10 @@
 
         </div>
         <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+
+        {% empty %}
+        <h1 class="text-center p-5">Your wishlist is empty. Start adding items you love!</h1>
+
         {% endfor %}
 
     </div>
@@ -181,3 +178,6 @@
 </section>
 
 {% endblock content %}
+
+
+Your wishlist is empty. Start adding items you love!

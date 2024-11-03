@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -86,11 +87,11 @@
     {% endfor %}
     {% endif %}
 
-    <div class="container pt-5">
+    <div class="container pt-3">
         <div class="row">
 
             <div class="col-md-4">
-                <img src=" {% static '\images\bulbs.jpeg' %} " alt="profile-img-2" class="profile-img"
+                <img src=" {{photo.url}} " alt="profile-img-2" class="profile-img"
                     style="width:250px; height:250px;">
             </div>
 
@@ -98,7 +99,7 @@
 
 
             <div class="text-white col-md-8 alegreya-font">
-                <h1 class="text-left pb-4" style="font-size: 70px">
+                <h1 class="text-left pb-3" style="font-size: 70px">
                     <b>Edit Profile</b>
                 </h1>
                 <form class="row col-md-8" method="POST">
@@ -114,9 +115,13 @@
                         <input type="email" name="email2" class="form-control " id="inputEmail4" value="{{user.email}}"
                             required />
                     </div>
+                    <div class="mb-3 w-100">
+                        <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                        <textarea class="form-control" name="address"  id="exampleFormControlTextarea1" rows="3"  >{{ address }}</textarea>
+                      </div>  
 
 
-                    <div class="field pt-5 col-md-12">
+                    <div class="field pt-4 col-md-12">
                         <button type="submit" name="submit_button" class="button w-100">
                             Submit
                         </button>

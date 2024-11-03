@@ -12,12 +12,15 @@
     }
 
     .button {
-        background-color: white;
+        background-color:rgb(7, 3, 14);
         width: 9em;
         height: 2em;
-        font-size: 1rem;
+        font-size: 1.2rem;
+        font-weight: bold;
         border: none;
         border-radius: 10px;
+        color:white;
+        
     }
 
     body {
@@ -37,7 +40,7 @@
 <div class="main" style="background-color: #18291e">
     {% if messages %}
     {% for msg in messages %}
-    <div class="alert alert-info" role="alert">
+    <div style="position: absolute;" class="alert alert-info w-100" role="alert">
         {{msg}}
     </div>
     {% endfor %}
@@ -45,7 +48,7 @@
     <div class="row text-white" >
 
         <div class="col-md-6">
-            <h1 class="text-center p-5" style="font-size: 58px">
+            <h1 class="text-center p-4" style="font-size: 58px">
                 <b>Get Started Now</b>
             </h1>
             <form class="row col-md-6 ml-auto mr-auto" method="POST">
@@ -68,21 +71,18 @@
                         placeholder="Enter the Password" />
                 </div>
 
-                <div class="ml-3 form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" />
-                    <label class="form-check-label" for="gridCheck">
-                        I agree to the Terms & Policy
-                    </label>
-                </div>
+                <div class="mb-3 w-100">
+                    <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                    <textarea class="form-control" name="address"  id="exampleFormControlTextarea1" rows="3" placeholder="Enter your address"></textarea>
+                  </div>               
+                  <div class="mb-3 w-100">
+                    <label for="formFile" class="form-label">Profile photo</label>
+                    <input  name="photo" style="background-color: #18291e; border:none;" class=" text-white form-control" type="file" id="formFile">
+                  </div>
 
-                <div class="field pt-5 col-md-12">
+                <div class="field pt-4 col-md-12">
                     <button type="submit" name="submit_button" class="button w-100">
                         Sign Up
-                    </button>
-                </div>
-                <div class="field pt-5 col-md-12">
-                    <button type="button" class="button w-100">
-                        <i class="fa-brands fa-google pr-3" style="color: #18291e"></i>Sign in with Google
                     </button>
                 </div>
                 <p style="font-size: 16px; padding: 3px;">Already have an account? <a href="{% url 'login' %}">Log
