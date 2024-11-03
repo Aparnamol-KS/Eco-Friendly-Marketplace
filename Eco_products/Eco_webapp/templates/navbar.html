@@ -5,7 +5,7 @@
       style="background-color: #18291e; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
       <div style="padding:2px;">
         <a class="navbar-brand text-white pl-4 align-center dancing-script-font" style="font-size: 37px; "
-            href="#">
+            href="{% url 'home' %}">
             <img src="{% static 'images\logo.png' %}" width="40" height="20" class="d-inline-block " style="padding-right:8px;"
                 alt="" />
             EcoRoots
@@ -18,10 +18,10 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav ml-auto ">
           <li class="nav-item active">
-            <a class="text-white nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="text-white nav-link" href=" {% url 'home' %} ">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="text-white nav-link " href="#">Shop</a>
+            <a class="text-white nav-link " href="{% url 'home' %}">Shop</a>
           </li>
           <li class="nav-item">
             <a class="text-white nav-link" href=" {% url 'cart' %} ">Cart</a>

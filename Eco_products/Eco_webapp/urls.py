@@ -6,10 +6,18 @@ urlpatterns = [
     path('login',views.login_user,name='login'),
     path('logout', views.logout_user, name='logout'),
     path('register',views.register_user,name='register'),
-    path('product_list',views.product_listing,name='product_list'),
-    path('product_detail',views.product_detail,name='product_detail'),
+    path('product_list/<str:category>/',views.product_listing,name='product_list'),
+    path('product_detail/<str:product_id>/',views.product_detail,name='product_detail'),
     path('cart', views.cart_view, name='cart'),
     path('wishlist', views.wishlist_view, name='wishlist'),
-    path('profile', views.profile_view, name='profile')
+    path('checkout', views.checkout, name='checkout'),
+    path('order_summary/<int:order_id>/', views.order_summary, name='order_summary'),
+    path('profile', views.profile_view, name='profile'),
+    path('add_to_cart/<str:product_id>/',views.add_to_cart,name='add_to_cart'),
+    path('cart/delete_cart_item/<str:product_id>/',views.delete_cart_item,name='delete_cart_item'),
+    path('add_to_wishlist/<str:product_id>/',views.add_to_wishlist,name='add_to_wishlist'),
+    path('wishlist/delete_wishlist_item/<str:product_id>/',views.delete_wishlist_item,name='delete_wishlist_item'),
+    path('sample',views.sample,name='sample')
+
    
 ]

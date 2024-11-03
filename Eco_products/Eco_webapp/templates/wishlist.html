@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Wishlist Page{% endblock title %}
 
 {% block style %}
 <style>
@@ -17,11 +16,11 @@
         font-weight: 600;
         font-style: normal;
     }
+
     body {
         font-family: Gilroy;
         width: 100%;
         height: 100%;
-        overflow: hidden;
         background-color: #E9FAFD;
     }
 
@@ -46,6 +45,7 @@
         font-size: 1rem;
         border: none;
         border-radius: 30px;
+        cursor: pointer;
     }
 
     .nav-link {
@@ -93,6 +93,13 @@
         cursor: pointer;
         font-size: 25px;
     }
+
+    .cross-link:hover,
+    .cross-link {
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+    }
 </style>
 {% endblock style %}
 
@@ -105,74 +112,34 @@
             Wishlist</h1>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid alegreya-font" >
         <div class="row mt-4   ">
             <div class="col-md-4">
-                <h4 class="text-center">Product</h4>
+                <h4 class="text-center"><b>Product</b></h4>
             </div>
             <div class="col-md-2">
-                <h4 class="text-center">Price</h4>
+                <h4 class="text-center"><b>Price</b></h4>
             </div>
             <div class="col-md-2">
-                <h4 class="text-center">Stock</h4>
-            </div>
-            
-
-        </div>
-
-        <hr style="height:1px;border-width:0;color:gray;background-color:gray">
-
-        <div class="row my-auto ">
-            <div class="col-md-4">
-                <div class="row">
-                    <div class="col-md-6 text-center">
-                        <img src="{% static '\images\Stainless-Steel-Straight-Straw.png' %} " class="w-50  rounded">
-                    </div>
-                    <div class="col-md-6 my-auto">
-                        <h6>Stainless Steel Metal Straws 8.5 inches</h6>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-2" style="margin-top: auto;margin-bottom: auto;">
-                <h4 class="text-center ">$1</h4>
-            </div>
-            <div class="col-md-2" style="margin-top: auto;margin-bottom: auto;">
-                <h4 class="text-center ">50</h4>
-            </div>
-            <div class="col-md-2" style="margin-top: auto;margin-bottom: auto;">
-                <button type="submit" name="submit_button" class="button w-100">
-                  ADD TO CART
-                </button>
-              </div>
-
-            <div class="col-md-2" style="margin-top: auto;margin-bottom: auto;">
-                <p class="text-center" style="font-size:28px;"><i
-                    class="fa-solid fa-xmark"></i></p>
+                <h4 class="text-center"><b>Stock</b></h4>
             </div>
 
 
         </div>
 
         <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+        {% for item in wishlist_items %}
 
 
         <div class="row my-auto ">
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-6 text-center">
-                        <img src="{% static '\images\soaps.jpeg' %}" class="w-50  rounded">
+                        <img src="{{item.product.product_image.url}}" style="height:10rem; width:10rem;"
+                            class=" rounded">
                     </div>
                     <div class="col-md-6 my-auto">
-                        <h6>Handmade natural soap bars</h6>
+                        <h6>{{item.product.product_name}}</h6>
                         <div class="rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -186,22 +153,28 @@
 
             </div>
             <div class="col-md-2" style="margin-top: auto;margin-bottom: auto;">
-                <h4 class="text-center ">$3</h4>
+                <h4 class="text-center ">${{item.product.price}}</h4>
             </div>
             <div class="col-md-2 " style="margin-top: auto;margin-bottom: auto;">
-                <h4 class="text-center ">50</h4>
+                <h4 class="text-center ">{{item.product.stock}}</h4>
             </div>
             <div class="col-md-2" style="margin-top: auto;margin-bottom: auto;">
-                <button type="submit" name="submit_button" class="button w-100">
-                  ADD TO CART
-                </button>
-              </div>
+                <form method="POST" action=" {% url 'add_to_cart' item.product.product_id %} ">
+                    {% csrf_token %}
+                    <button type="submit" name="submit_button" class="button w-100">
+                        ADD TO CART
+                    </button>
+                </form>
+            </div>
             <div class="col-md-2" style="margin-top: auto;margin-bottom: auto;">
-                <p class="text-center" style="font-size:28px;"><i
-                    class="fa-solid fa-xmark"></i></p>
+                <a class="cross-link" href=" {% url 'delete_wishlist_item' item.product.product_id %} ">
+                    <p class="text-center" style="font-size:28px;"><i class="fa-solid fa-xmark"></i></p>
+                </a>
             </div>
 
         </div>
+        <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+        {% endfor %}
 
     </div>
 
