@@ -106,20 +106,22 @@
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
           <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
           <a class="dropdown-item" href=" {% url 'logout' %} ">Logout</a>
-          <a class="dropdown-item" href="#">Any Action</a>
+          {% if user.is_superuser %}
+          <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
+          {% endif %}
         </div>
       </div>
       {% else %}
       <div class="log">
 
         <ul class="navbar-nav  mr-5">
-          <li class="nav-item active">
-            <a href="{% url 'login' %}" class="text-white nav-link">
+          <li class="nav-item {% if request.path == '/login' %}active{% endif %}">
+            <a href="{% url 'login' %}" class=" nav-link">
               <b>Login</b>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{% url 'register' %}" class="text-white nav-link">
+          <li class="nav-item {% if request.path == '/register' %}active{% endif %}">
+            <a href="{% url 'register' %}" class=" nav-link">
               <b>Register</b>
             </a>
           </li>

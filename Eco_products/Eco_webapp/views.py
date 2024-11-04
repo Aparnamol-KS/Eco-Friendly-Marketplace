@@ -285,3 +285,12 @@ def delete_order(request, order_id):
     return redirect('order_summary') 
 
 
+from django.contrib.auth.decorators import user_passes_test
+
+def admin_check(user):
+    return user.is_authenticated and user.is_staff  # or custom logic like user.profile.is_admin
+
+@user_passes_test(admin_check)
+def admin_dashboard(request):
+    # Logic for your admin dashboard
+    return render(request, 'admin_dashboard.html')

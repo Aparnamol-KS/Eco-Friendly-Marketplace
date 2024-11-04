@@ -17,7 +17,8 @@ urlpatterns = [
     path('add_to_cart/<str:product_id>/',views.add_to_cart,name='add_to_cart'),
     path('cart/delete_cart_item/<str:product_id>/',views.delete_cart_item,name='delete_cart_item'),
     path('add_to_wishlist/<str:product_id>/',views.add_to_wishlist,name='add_to_wishlist'),
-    path('wishlist/delete_wishlist_item/<str:product_id>/',views.delete_wishlist_item,name='delete_wishlist_item')
+    path('wishlist/delete_wishlist_item/<str:product_id>/',views.delete_wishlist_item,name='delete_wishlist_item'),
+    path('admin/', admin.site.urls)
     
 
    

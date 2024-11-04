@@ -258,7 +258,9 @@
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
           <a class="dropdown-item" href=" {% url 'profile' %}">Profile</a>
           <a class="dropdown-item" href=" {% url 'logout' %} ">Logout</a>
-          <a class="dropdown-item" href="#">Any Action</a>
+          {% if user.is_superuser %}
+          <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
+          {% endif %}
         </div>
       </div>
       {% else %}
