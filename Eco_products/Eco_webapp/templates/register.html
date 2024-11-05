@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Register Page{% endblock title %}
 
 {% block style %}
 <style>
@@ -13,17 +12,20 @@
     }
 
     .button {
-        background-color: white;
+        background-color:rgb(7, 3, 14);
         width: 9em;
         height: 2em;
-        font-size: 1rem;
+        font-size: 1.2rem;
+        font-weight: bold;
         border: none;
         border-radius: 10px;
+        color:white;
+        
     }
 
     body {
 
-        font-family: poppins;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         font-weight: 200;
         width: 100%;
         height: 100%;
@@ -34,16 +36,26 @@
 {% endblock style %}
 
 {% block content %}
-<div class="main">
-    <div class="row text-white" style="background-color: #18291e">
+
+<div class="main" style="background-color: #18291e">
+    {% if messages %}
+    {% for msg in messages %}
+    <div style="position: absolute;" class="alert alert-info w-100" role="alert">
+        {{msg}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="row text-white" >
+
         <div class="col-md-6">
-            <h1 class="text-center p-5" style="font-size: 58px">
+            <h1 class="text-center p-4" style="font-size: 58px">
                 <b>Get Started Now</b>
             </h1>
-            <form class="row col-md-6 ml-auto mr-auto" method="post">
+            <form class="row col-md-6 ml-auto mr-auto" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="field form-group col-md-12">
                     <label for="inputname" class="form-label">Name</label>
-                    <input type="text" name="stu_name" class="form-control" placeholder="Enter your name" id="inputname"
+                    <input type="text" name="name1" class="form-control" placeholder="Enter your name" id="inputname"
                         required />
                 </div>
 
@@ -55,26 +67,26 @@
 
                 <div class="field form-group col-md-12">
                     <label for="inputPassword4">Password</label>
-                    <input type="password" class="form-control" id="inputPassword4" placeholder="Enter the Password" />
+                    <input type="password" name="password" class="form-control" id="inputPassword4"
+                        placeholder="Enter the Password" />
                 </div>
 
-                <div class="ml-3 form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" />
-                    <label class="form-check-label" for="gridCheck">
-                        I agree to the Terms & Policy
-                    </label>
-                </div>
+                <div class="mb-3 w-100">
+                    <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                    <textarea class="form-control" name="address"  id="exampleFormControlTextarea1" rows="3" placeholder="Enter your address"></textarea>
+                  </div>               
+                  <div class="mb-3 w-100">
+                    <label for="formFile" class="form-label">Profile photo</label>
+                    <input  name="photo" style="background-color: #18291e; border:none;" class=" text-white form-control" type="file" id="formFile">
+                  </div>
 
-                <div class="field pt-5 col-md-12">
+                <div class="field pt-4 col-md-12">
                     <button type="submit" name="submit_button" class="button w-100">
                         Sign Up
                     </button>
                 </div>
-                <div class="field pt-5 col-md-12">
-                    <button type="button" class="button w-100">
-                        <i class="fa-brands fa-google pr-3" style="color: #18291e"></i>Sign in with Google
-                    </button>
-                </div>
+                <p style="font-size: 16px; padding: 3px;">Already have an account? <a href="{% url 'login' %}">Log
+                        In</a></p>
             </form>
         </div>
         <div class="col-md-6">
@@ -83,23 +95,3 @@
     </div>
 </div>
 {% endblock content %}
-
-
-<!--
-<h1>REGISTER PAGE</h1>
-
-<form method="POST" action="">
-  {% csrf_token %}
-  <input type="text" name="name1" placeholder="Name" required><br>
-  <input type="email" name="email" placeholder="Email" required><br>
-  <input type="password" name="password" placeholder="Password" required><br>
-  <button type="submit">Register</button>
-</form>
-
-{% if messages %}
-  {% for msg in messages %}
-    {{msg}}
-  {% endfor %}
-{% endif %}
-
--->

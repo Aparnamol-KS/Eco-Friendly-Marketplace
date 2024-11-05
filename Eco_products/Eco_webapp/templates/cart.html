@@ -205,36 +205,7 @@
 </section>
 
 
-<script>
-   // Function to increment the quantity
-   function increment(button, price) {
-      const input = button.previousElementSibling;  // Get the input element
-      let currentQuantity = parseInt(input.value);
-      currentQuantity += 1;
-      input.value = currentQuantity;
-      updatePrice(input, price);
-   }
 
-   // Function to decrement the quantity
-   function decrement(button, price) {
-      const input = button.nextElementSibling;  // Get the input element
-      let currentQuantity = parseInt(input.value);
-      if (currentQuantity > 1) {
-         currentQuantity -= 1;
-         input.value = currentQuantity;
-      }
-      updatePrice(input, price);
-   }
-
-   // Function to update the price dynamically
-   function updatePrice(input, price) {
-      const quantity = parseInt(input.value);
-      const priceElement = input.closest('.d-flex').querySelector('.price');
-      const unitPrice = parseInt(input.getAttribute('data-price'));
-      const totalPrice = (unitPrice * quantity);  // Calculate total price
-      priceElement.textContent = totalPrice;  // Update the displayed price
-   }
-</script>
 
 
 {% endblock content %}
