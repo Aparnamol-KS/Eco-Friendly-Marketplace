@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}Login Page{% endblock title %}
 
 {% block style %}
 <style>
-    
   body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: 200;
@@ -53,29 +53,22 @@
 
 {% block content %}
 {% include "navbar.html" %}
-{% if messages %}
-  {% for msg in messages %}
-  <div style="position: absolute;" class="alert alert-info w-100" role="alert">
-    {{msg}}
-</div>
-  {% endfor %}
-{% endif %}
 <div class="row">
   <div class="col-md-8">
     <h1 class="p-5 ml-3" style="font-size: 58px">
       <b>Welcome Back!</b>
     </h1>
-    <form class="row col-md-6 ml-5" method="POST">
-      {% csrf_token %}
+    <form class="row col-md-6 ml-5" method="post">
+
       <div class="field form-group col-md-12">
-        <label for="inputEmail4" class="form-label">Name</label>
-        <input style="border:2px solid Grey;" type="text" name="name" class="form-control"
-          placeholder="Enter your name" id="inputEmail4" required />
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input style="border:2px solid Grey;" type="email" name="email" class="form-control"
+          placeholder="Enter your email" id="inputEmail4" required />
       </div>
 
       <div class="field form-group col-md-12">
         <label for="inputPassword4">Password</label>
-        <input style="border:2px solid Grey;" name="pwd" type="password" class="form-control" id="inputPassword4"
+        <input style="border:2px solid Grey;" type="password" class="form-control" id="inputPassword4"
           placeholder="Enter the Password" />
       </div>
 
@@ -84,10 +77,31 @@
           Login
         </button>
       </div>
-      <p style="font-size: 17px; padding: 2px;">Don't have an account? <a href= "{% url 'register' %}" >Register</a></p>
-      
 
     </form>
   </div>
 </div>
 {% endblock content %}
+
+<!--
+<h1>LOGIN PAGE</h1>
+
+<form method="post" >
+    {% csrf_token %}
+    <label for="fname">Name:</label><br>
+    <input type="text" id="fname" name="name"><br>
+    <label for="pwd">Password:</label><br>
+    <input type="password" id="pwd" name="pwd"><br>
+    <input type="submit" value="Submit"><br>
+    <p>Don't have an account? <a href= "{% url 'register' %}" >Register</a></p>
+</form>
+
+{% if messages %}
+  {% for msg in messages %}
+  <div style="position: absolute;" class="alert alert-info w-100" role="alert">
+    {{msg}}
+</div>
+  {% endfor %}
+{% endif %}
+
+-->

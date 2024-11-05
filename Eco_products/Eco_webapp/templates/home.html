@@ -1,485 +1,425 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block style %}
-<style>
-    nav ul li.active a {
-    text-decoration: none;
-    /* This will underline the active link */
-    font-weight: bolder;
-    background-color: black;
-    border-radius: 10px;
-    width:60%;
-    font-family: "Alegreya", serif;
-  }
-
-  .navbar-light .navbar-nav .active>.nav-link,
-  .navbar-light .navbar-nav .nav-link.active,
-  .navbar-light .navbar-nav .nav-link.show,
-  .navbar-light .navbar-nav .show>.nav-link{
-    color: white;
-  }
-  .navbar-light .navbar-nav .nav-link  {
-    color:black;
-  }
-  .navbar-light:hover .navbar-nav:hover .nav-link:hover{
-    color:whit;
-  }
-  .dancing-script-font {
-    font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-  }
-
-  .alegreya-font {
-    font-family: "Alegreya", serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-  }
-
-  .block-link:hover{
-    text-decoration: none;
-    
-  }
-
-  .main-sec {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    height: 87.5%;
-  }
-
-  body {
-    background-image: url(' {% static "\images\homebg.png" %}');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin: 0;
-    padding: 0;
-  }
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  .field {
-    padding: 2px;
-  }
-
-  .button {
-    background-color: #18291e;
-    color: white;
-    width: 9em;
-    height: 3em;
-    font-size: 1rem;
-    border: none;
-    border-radius: 30px;
-  }
-
-  .nav-link {
-    margin-left: 45px;
-    font-size: 19px;
-    font-weight:bold;
-    font-family: "Alegreya", serif;
-  }
-
-
-
-  .profile-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .dropdown-menu {
-    right: 0;
-    left: auto;
-  }
-
-  .shop {
-    background-image: url(' {% static "\images\bg-image.jpeg" %}');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin: auto;
-    font-family: Tahoma;
-
-
-  }
-
-  .card {
-    border-radius: 16px;
-    padding: 100px;
-    background-color: #18291e;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-
-  .card:hover {
-    transform: scale(1.25);
-  }
-
-  .card-sec {
-    padding: 50px;
-  }
-
-  .rating i {
-    font-size: 16px;
-    color: gold;
-
-  }
-
-  .icon i {
-    font-size: 19px;
-    padding: 4px;
-  }
-
-  .footer {
-    padding: 40px 0;
-    background-color: #65795F;
-    color: black;
-  }
-
-  .footer ul {
-    padding: 0;
-    list-style: none;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 0;
-  }
-
-  .footer li {
-    display: inline-block;
-    padding: 0 10px;
-  }
-
-  .footer ul a {
-    color: inherit;
-    text-decoration: none;
-    opacity: 0.8;
-  }
-
-  .footer ul a:hover {
-    opacity: 1;
-  }
-
-  .footer .social {
-    text-align: center;
-    padding-bottom: 25px;
-  }
-
-  .footer .social>a {
-    font-size: 30px;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    display: inline-block;
-    text-align: center;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    margin: 0 8px;
-    color: inherit;
-    opacity: 0.75;
-  }
-
-  .footer .social>a:hover {
-    opacity: 0.9;
-  }
-
-  .footer .copyright {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 13px;
-
-    color: #18291e;
-    margin-bottom: 0;
-  }
-
-  .footer .footer-break {
-    height: 2px;
-    border-width: 0;
-    color: #18291e;
-    background-color: white
-  }
-
-  .social-icon {
-    padding: 10px;
-    font-size: 50px;
-    color: white;
-  }
-</style>
-
-{% endblock style %}
-
-{% block content %}
-<header>
-  <div class="row">
-    <nav class="navbar navbar-expand-lg navbar-light col-md-12 p-3" style="background-color: #E9FAFD; ">
-      <div style="padding:2px;">
-        <a class="navbar-brand pl-4 align-center" style="font-size: 30px; " href="#">
-          <img src=" {% static 'images\assets\vector.png' %} " width="45" height="25" class="d-inline-block "
-            style="padding-right:8px;" alt="" />
-        </a>
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item {% if request.path == '/' %}active{% endif %}">
-            <a class=" nav-link" href=" {% url 'home' %} ">Home </a>
-          </li>
-          <li class="nav-item {% if request.path == '#shop' %}active{% endif %}">
-            <a class=" nav-link " href="#shop">Shop</a>
-          </li>
-          <li class="nav-item {% if request.path == '/cart' %}active{% endif %}">
-            <a class=" nav-link test" href=" {% url 'cart' %} ">Cart</a>
-          </li>
-          <li class="nav-item {% if request.path == '/cart/order_summary/' %}active{% endif %}">
-            <a class="  nav-link " href=" {% url 'order_summary' %} ">My orders</a>
-          </li>
-          <li class="nav-item mr-5  {% if request.path == '/wishlist' %}active{% endif %}">
-            <a class=" nav-link" href="{% url 'wishlist' %}">Wishlist</a>
-          </li>
-        </ul>
-      </div>
-      {% if user.is_authenticated %}
-      <div class="dropdown mr-5">
-        <img src='{{ user_profile_pic|default:"bulbs.jpeg" }}' alt="Profile Image" class="profile-img" id="profileDropdown"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
-        <div class="dropdown-menu" aria-labelledby="profileDropdown">
-          <a class="dropdown-item" href=" {% url 'profile' %}">Profile</a>
-          <a class="dropdown-item" href=" {% url 'logout' %} ">Logout</a>
-          {% if user.is_superuser %}
-          <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
-          {% endif %}
-        </div>
-      </div>
-      {% else %}
-      <div class="log">
-
-        <ul class="navbar-nav  mr-5">
-          <li class="nav-item active">
-            <a href="{% url 'login' %}" class="nav-link">
-              <b>Login</b>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a href="{% url 'register' %}" class="nav-link">
-              <b>Register</b>
-            </a>
-          </li>
-        </ul>
-      </div>
-      {% endif %}
-
-
-
-
-
+<header class="flex overflow-hidden flex-col pt-14 bg-cyan-50">
+  <div class="flex flex-wrap gap-5 justify-between self-center ml-3.5 w-full max-w-[1650px] max-md:max-w-full">
+    <div class="flex gap-6 items-start self-end mt-6">
+      <img loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/b31b560a75a8383192ffeda0d6e787336930c8b2c35c966451e94843e08c3d0f?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+        alt="EcoRoots logo" class="object-contain shrink-0 mt-1.5 aspect-[1.11] w-[62px]" />
+      <img loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/718f32d15dd1c0c939231ebbf42c3382434b20241e98239ae705eee8efe50b1e?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+        alt="Sustainability icon" class="object-contain shrink-0 aspect-[1.11] w-[50px]" />
+    </div>
+    <nav class="flex flex-wrap gap-10 items-center text-3xl font-medium text-center text-emerald-950 max-md:max-w-full">
+      <a href="#" class="self-stretch my-auto">Home</a>
+      <a href="#" class="self-stretch my-auto">Shop</a>
+      <a href="#" class="self-stretch my-auto">Cart</a>
+      <a href="#" class="self-stretch my-auto basis-auto">Wishlist</a>
+      <a href="#" class="self-stretch px-3 py-7 text-white border-4 border-solid bg-emerald-950 border-emerald-950">Sign
+        In/ Register</a>
     </nav>
   </div>
+  <style>
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      min-height: 738px;
+      margin-top: 33px;
+      width: 100%;
+      align-items: center;
+      font-family: Original, sans-serif;
+      color: #fff;
+      font-weight: 100;
+      text-align: center;
+      justify-content: center;
+      padding: 210px 80px;
+    }
+
+    @font-face {
+      font-family: 'Original';
+      src: url('https://drive.google.com/file/d/1fDitEcI5-z-HXCTxZ37L7V3wV5wzT5Nw/view?usp=drive_link') format('otf');
+    }
+
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('Gilroy-Bold.woff') format('otf');
+    }
+
+    @media (max-width: 991px) {
+      .hero-container {
+        max-width: 100%;
+        padding: 100px 20px;
+      }
+    }
+
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-content {
+      position: relative;
+      display: flex;
+      width: 708px;
+      max-width: 100%;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 0 -34px 20px;
+    }
+
+    @media (max-width: 991px) {
+      .hero-content {
+        margin-bottom: 10px;
+      }
+    }
+
+    .hero-title {
+      font-size: 176px;
+      align-self: stretch;
+    }
+
+    @media (max-width: 991px) {
+      .hero-title {
+        max-width: 100%;
+        font-size: 40px;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 45px;
+      margin-top: 39px;
+    }
+
+    @media (max-width: 991px) {
+      .hero-subtitle {
+        max-width: 100%;
+        font-size: 40px;
+      }
+    }
+
+    .cta-button {
+      background-color: #e9fafd;
+      margin-top: 13px;
+      width: 248px;
+      max-width: 100%;
+      color: #013220;
+      padding: 24px 49px;
+      font: 500 32px Gilroy, sans-serif;
+      border: 4px solid #013220;
+      cursor: pointer;
+    }
+
+    @media (max-width: 991px) {
+      .cta-button {
+        padding: 24px 20px;
+      }
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+  <section class="hero-container">
+    <img
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/229f6bab0468710c2c8f56c685b90faa97b8995e7b92c92c769c9acbf823319f?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+      alt="" class="hero-background" />
+    <div class="hero-content">
+      <h1 class="hero-title">EcoRoots</h1>
+      <p class="hero-subtitle">Sustainable living simplified</p>
+      <button class="cta-button" tabindex="0">Shop Now</button>
+    </div>
+  </section>
+
+  <style>
+    .sustainable-categories {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      min-height: 998px;
+      width: 100%;
+      align-items: center;
+      color: #e9fafd;
+      text-align: center;
+      justify-content: center;
+      padding: 240px 80px;
+      font: 500 44px Gilroy, sans-serif;
+    }
+
+    .background-image {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .categories-container {
+      position: relative;
+      display: flex;
+      margin-bottom: -40px;
+      width: 100%;
+      max-width: 1445px;
+      flex-direction: column;
+    }
+
+    .categories-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .category-item {
+      border-radius: 30px;
+      background-color: #013220;
+      padding: 57px 70px;
+      border: 2px solid #013220;
+    }
+
+    .zero-waste {
+      width: 382px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      padding: 38px 70px 78px;
+    }
+
+    .bottom-row {
+      margin-top: 118px;
+    }
+
+    .sustainable-fashion {
+      width: 302px;
+    }
+
+    .personal-care {
+      padding: 61px 70px 106px;
+    }
+
+    @media (max-width: 991px) {
+      .sustainable-categories {
+        max-width: 100%;
+        padding: 100px 20px;
+      }
+
+      .categories-container {
+        max-width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .categories-row {
+        max-width: 100%;
+      }
+
+      .category-item {
+        max-width: 100%;
+        padding: 0 20px;
+      }
+
+      .bottom-row {
+        max-width: 100%;
+        margin-top: 40px;
+      }
+
+      .personal-care {
+        padding: 0 20px 100px;
+      }
+    }
+  </style>
+
+  <section class="sustainable-categories">
+    <img
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/87bae7198c889777440d24b07a759c4633bcffac6874d80746b8e261dd9d616b?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+      alt="" class="background-image" />
+    <div class="categories-container">
+      <div class="categories-row">
+        <h2 class="category-item">Sustainable Home Essentials</h2>
+        <h2 class="category-item zero-waste">Zero-Waste Products</h2>
+      </div>
+      <div class="categories-row bottom-row">
+        <h2 class="category-item sustainable-fashion">Sustainable Fashion</h2>
+        <h2 class="category-item personal-care">Personal Care</h2>
+      </div>
+    </div>
+  </section>
 </header>
 
-<section class="main-sec">
-  <div class="row">
-    <div class="col-md-12">
-      <p class="font-weight-light dancing-script-font" style="font-size: 13rem;">EcoRoots</p>
-      <p class="mb-5 alegreya-font" style="font-size: 25px;">Sustainable living simplified</p>
+<main>
+  <section
+    class="flex relative flex-col justify-center items-center px-20 py-52 mt-8 w-full font-thin text-center text-white min-h-[738px] max-md:px-5 max-md:py-24 max-md:max-w-full">
+    <img loading="lazy"
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/229f6bab0468710c2c8f56c685b90faa97b8995e7b92c92c769c9acbf823319f?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+      alt="Background image of sustainable products" class="object-cover absolute inset-0 size-full" />
+    <div class="flex relative flex-col items-center mb-0 ml-5 max-w-full w-[708px] max-md:mb-2.5">
+      <h1 class="self-stretch text-[176px] max-md:max-w-full max-md:text-4xl">EcoRoots</h1>
+      <p class="mt-10 text-5xl max-md:max-w-full max-md:text-4xl">Sustainable living simplified</p>
+      <a href="#"
+        class="px-12 py-6 mt-3.5 max-w-full text-3xl font-medium bg-cyan-50 border-4 border-solid border-emerald-950 text-emerald-950 w-[248px] max-md:px-5">Shop
+        Now</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="shop" id="shop">
-  <div class="container" style="padding:150px;">
-    <div class="row">
-      <div class="col-md-6 card-sec">
-
-        <a class="block-link" href="{% url 'product_list' 'SH' %}">
-          <div class="card text-white  text-center p-3" style="width:100%; height:100%">
-            <div class="card-body">
-              <h2 class="card-title">Sustainable Home Essentials</h2>
-            </div>
-          </div>
-        </a>
-
+  <section
+    class="flex relative flex-col justify-center items-center px-20 py-60 w-full text-5xl font-medium text-center text-cyan-50 min-h-[998px] max-md:px-5 max-md:py-24 max-md:max-w-full">
+    <img loading="lazy"
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/87bae7198c889777440d24b07a759c4633bcffac6874d80746b8e261dd9d616b?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+      alt="Background image showcasing eco-friendly products" class="object-cover absolute inset-0 size-full" />
+    <div class="flex relative flex-col -mb-10 w-full max-w-[1445px] max-md:mb-2.5 max-md:max-w-full">
+      <div class="flex flex-wrap gap-5 justify-between max-md:max-w-full">
+        <a href="#"
+          class="px-16 py-14 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] max-md:px-5 max-md:max-w-full">Sustainable
+          Home Essentials</a>
+        <a href="#"
+          class="px-16 pt-10 pb-20 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[382px] max-md:px-5 max-md:max-w-full">Zero-Waste
+          Products</a>
       </div>
-
-     
-      <div class="col-md-6 card-sec">
-        <a class="block-link" href="{% url 'product_list' 'ZW' %}">
-        <div class="card text-white  text-center p-3" style="width:100%; height:100%">
-          <div class="card-body">
-            <h2 class="card-title">Zero-Waste Products</h2>
-          </div>
-        </div>
-      </a>
+      <div class="flex flex-wrap gap-5 justify-between mt-28 max-md:mt-10 max-md:max-w-full">
+        <a href="#"
+          class="px-16 py-14 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] w-[302px] max-md:px-5 max-md:max-w-full">Sustainable
+          Fashion</a>
+        <a href="#"
+          class="px-16 pt-16 pb-28 border-2 border-solid bg-emerald-950 border-emerald-950 rounded-[30px] max-md:px-5 max-md:pb-24 max-md:max-w-full">Personal
+          Care</a>
       </div>
-    
-
     </div>
-    <hr style="height:2px;width:100%; border-width:0;color:gray;background-color:gray">
+  </section>
 
-    <div class="row">
-      
-      
-        <div class="col-md-6 card-sec">
-          <a class="block-link" href="{% url 'product_list' 'SF' %}">
-          <div class="card text-white  text-center p-3" style="width:100%; height:100%">
-            <div class="card-body">
-              <h2 class="card-title">Sustainable Fashion</h2>
-            </div>
-          </div>
-        </a>
+  <section
+    class="flex flex-col justify-center items-center px-20 py-14 w-full text-center bg-stone-600 bg-opacity-80 max-md:px-5 max-md:max-w-full">
+    <div class="flex flex-col w-full max-w-[1606px] max-md:max-w-full">
+      <div class="flex flex-wrap gap-10 items-end text-6xl text-cyan-50 max-md:max-w-full max-md:text-4xl">
+        <div class="shrink-0 mt-11 max-w-full h-2 bg-cyan-50 border-4 border-white border-solid w-[456px] max-md:mt-10">
         </div>
-      
-
-      
-        <div class="col-md-6 card-sec">
-          <a class="block-link" href="{% url 'product_list' 'PC' %}">
-          <div class="card text-white  text-center p-4" style="width:100%; height:100%">
-            <div class="card-body">
-              <h2 class="card-title">Personal Care</h2>
-            </div>
-          </div>
-        </a>
+        <h2 class="grow shrink self-stretch w-[365px] max-md:max-w-full max-md:text-4xl">BEST SELLERS</h2>
+        <div
+          class="shrink-0 mt-11 max-w-full h-2.5 bg-cyan-50 border-4 border-white border-solid w-[456px] max-md:mt-10">
         </div>
-      
-
-    </div>
-  </div>
-  </div>
-</section>
-
-
-<section class="third-sec" style="height: 100%;">
-  <div class="row" style="background-color: #65795F;">
-    <div class="col-md-4 my-auto">
-      <hr style="height:2px;width:80%; border-width:0;color:white;background-color:white">
-    </div>
-    <div class="col-md-4 text-white text-center p-2">
-      <h1 style="font-size: 45px;">BEST SELLERS</h1>
-      <p style="font-size: 20px;">Eco-Friendly Favorites Everyone Loves</p>
-    </div>
-    <div class="col-md-4 my-auto ">
-      <hr style="height:2px;width:80%; border-width:0;color:white;background-color:white">
-    </div>
-  </div>
-  <div class="row px-5">
-    <div class="container-fluid px-5">
-      <div class="row px-5">
-
-        <div class="col-md-4 ">
-          <img src="{% static '\images\soaps.jpeg' %} " class="img-fluid rounded mt-3"
-            style="height:450px; width:400px;" alt="Responsive image">
-          <div class="row pt-2">
-            <div class="col-md-10">
-              <h1 style="font-size: 17.5px; ">Handmade Natural Soap Bars</h1>
-            </div>
-            <div class="col-md-2">
-              <p style="color:green; font-size: 19px;">$9</p>
-            </div>
-          </div>
-          
-
-
-        </div>
-
-
-        <div class="col-md-4 ">
-          <img src=" {% static '\images\Beeswax-Wrap.jpeg' %} " class="img-fluid rounded mt-3"
-            style="height:450px; width:400px;" alt="Responsive image">
-          <div class="row pt-2">
-            <div class="col-md-10">
-              <h1 style="font-size: 17.5px; ">Beeswax Wraps</h1>
-            </div>
-            <div class="col-md-2">
-              <p style="color:green; font-size: 19px;">$15</p>
-            </div>
-          </div>
-          
-
-        </div>
-
-
-        <div class="col-md-4 ">
-          <img src=" {% static '\images\tote-bag.jpeg' %} " class="img-fluid rounded mt-3"
-            style="height:450px; width:400px;" alt="Responsive image">
-          <div class="row pt-2">
-            <div class="col-md-10">
-              <h1 style="font-size: 17.5px; ">Organic Cotton Tote Bags</h1>
-            </div>
-            <div class="col-md-2">
-              <p style="color:green; font-size: 19px;">$12</p>
-            </div>
-
-          </div>
-          
-
-        </div>
-
-
       </div>
-      <div>
+      <p class="self-center mt-3.5 text-4xl font-medium text-white max-md:max-w-full">Eco-Friendly Favorites Everyone
+        Loves</p>
+    </div>
+  </section>
 
-        <div class="col-md-12 text-center">
-          <button type="submit" name="submit_button" class="button w-75 "
-            style="background-color: #65795F; font-size: 19px;">
-            Swipe through for more exciting deals!
-          </button>
+  <section class="flex flex-col self-center mt-9 w-full max-w-[1606px] max-md:max-w-full">
+    <div class="max-md:max-w-full">
+      <div class="flex gap-5 max-md:flex-col">
+        <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+          <img loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d030c963fa66aff486b83f753947d83bbfe992d1ff19f29d32737e39f9781753?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+            alt="Eco-friendly product 1"
+            class="object-contain grow w-full aspect-[0.83] max-md:mt-10 max-md:max-w-full" />
+        </div>
+        <div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+          <img loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d3ce0c3eee7122cdf7aa8e99b40d39c366973bbf3533f974449ba27a2a768548?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+            alt="Eco-friendly product 2"
+            class="object-contain grow w-full aspect-[0.83] max-md:mt-10 max-md:max-w-full" />
+        </div>
+        <div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+          <img loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/8735eb16154a5655c706b912e47d4e0b2a4da7f57568fe87bb4b9b8b5a2c87c0?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+            alt="Eco-friendly product 3"
+            class="object-contain grow w-full aspect-[0.83] max-md:mt-10 max-md:max-w-full" />
         </div>
       </div>
     </div>
-  </div>
+    <div class="self-start mt-14 ml-5 text-3xl font-medium text-black max-md:mt-10 max-md:ml-2.5">
+      <h3>Handmade Natural Soap Bars</h3>
+      <p>$9</p>
+    </div>
+    <div
+      class="flex flex-wrap gap-9 self-center px-12 py-11 mt-14 max-w-full text-5xl font-semibold bg-stone-500 bg-opacity-80 rounded-[45px] text-zinc-800 w-[956px] max-md:px-5 max-md:mt-10 max-md:text-4xl">
+      <p class="flex-auto w-[785px] max-md:max-w-full max-md:text-4xl">Swipe through for more exciting deals!</p>
+      <img loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/0cd246f0e11cc31c504b1a1582576b6a752b60d70daf59990aecc0af5c60bb17?apiKey=b64f5c7b78404613a7c575a2aa0abaa7&"
+        alt="Swipe icon" class="object-contain shrink-0 self-start mt-2 w-8 aspect-[0.8]" />
+    </div>
+  </section>
 
-</section>
-
-<footer style="height: 100%; background-color: #65795F;">
-  <div class=" row text-white text-center" style="background-color: #18291e;">
-
-    <div class="col-md-12 p-5">
-      <h1 style="font-size: 55px;" class="alegreya-font text-center">ABOUT US</h1>
-      <p style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">At EcoRoots,
-        we're passionate about making sustainable living simple and accessible for everyone. Our
+  <section
+    class="flex flex-col justify-center items-center px-20 py-20 mt-8 w-full text-center bg-neutral-800 max-md:px-5 max-md:max-w-full">
+    <div class="flex flex-col w-full max-w-[1623px] max-md:max-w-full">
+      <h2 class="self-center text-4xl text-white">ABOUT US</h2>
+      <p class="mt-11 text-4xl text-cyan-50 max-md:mt-10 max-md:max-w-full">
+        At EcoRoots, we're passionate about making sustainable living simple and accessible for everyone. Our
         eco-friendly marketplace is dedicated to providing plastic-free, zero-waste products that help reduce your
         environmental footprint without compromising on quality or style. From everyday essentials to personal care
         items, each product in our collection is carefully curated to ensure it's ethically sourced, sustainable, and
-        crafted with the planet in mind.</p>
-      <p style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> We believe
-        that small changes can create a big impact, and our mission is to
-        empower individuals to make conscious choices that protect the Earth for future generations. Join us in our
-        journey towards a cleaner, greener world—one eco-friendly product at a time.</p>
+        crafted with the planet in mind.
+        <br />
+        We believe that small changes can create a big impact, and our mission is to empower individuals to make
+        conscious choices that protect the Earth for future generations. Join us in our journey towards a cleaner,
+        greener world—one eco-friendly product at a time.
+      </p>
     </div>
-  </div>
-  <div class="row  text-center ">
-    <div class="col-md-12 footer">
-      <p class="font-weight-light dancing-script-font" style="font-size: 7rem;">EcoRoots</p>
-      <h3 id="social-heading" class="sr-only">Follow us on social media</h3>
-      <a href="#" aria-label="Facebook"><i class="social-icon fa-brands fa-facebook"></i></a>
-      <a href="#" aria-label="Twitter"><i class=" social-icon fa-brands fa-x-twitter"></i></a>
-      <a href="#" aria-label="Mastodon"><i class=" social-icon fa-brands fa-mastodon"></i></a>
-      <a href="#" aria-label="Instagram"><i class="social-icon fa-brands fa-instagram"></i></a>
-      <hr class="footer-break">
-      <ul class="footer-links" role="navigation" aria-labelledby="footer-links-heading">
-        <h3 id="footer-links-heading" class="sr-only">Footer Links</h3>
-        <li><a href="#">Site Home</a></li>
-        <li><a href="#">Playground</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Sitemap</a></li>
-        <li><a href="#">Contents</a></li>
-      </ul>
-      <p class="copyright">© 2024 EcoRoots</p>
+  </section>
+</main>
+
+<footer
+  class="flex z-10 flex-col justify-center items-center px-16 py-44 -mt-1.5 w-full bg-stone-500 bg-opacity-80 max-md:px-5 max-md:py-24 max-md:max-w-full">
+  <div class="-mb-10 w-full max-w-[1624px] max-md:mb-2.5 max-md:max-w-full">
+    <div class="flex gap-5 max-md:flex-col">
+      <div class="flex flex-col w-[22%] max-md:ml-0 max-md:w-full">
+        <div class="text-4xl text-white max-md:mt-10">
+          <h3 class="text-neutral-800">CONTACT US</h3>
+          <p class="text-3xl font-semibold text-neutral-800">+1(844)326-6000</p>
+          <p class="text-3xl font-semibold text-neutral-800">Email us: ecoroots@gmail.com</p>
+          <p class="text-3xl font-semibold text-neutral-800">Mon-Fri 9am-3pm IST</p>
+        </div>
+      </div>
+      <nav class="flex flex-col ml-5 w-[22%] max-md:ml-0 max-md:w-full">
+        <div class="text-4xl text-white max-md:mt-10">
+          <h3 class="text-neutral-800">CUSTOMER</h3>
+          <ul class="text-3xl font-semibold text-neutral-800">
+            <li><a href="#">Start a Return</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Catalogs and Mailers</a></li>
+          </ul>
+        </div>
+      </nav>
+      <nav class="flex flex-col ml-5 w-[16%] max-md:ml-0 max-md:w-full">
+        <div class="text-4xl text-white max-md:mt-10">
+          <h3 class="text-neutral-800">COMPANY</h3>
+          <ul class="text-3xl font-semibold text-neutral-800">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Discover Revive</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="flex flex-col ml-5 w-[41%] max-md:ml-0 max-md:w-full">
+        <div class="flex flex-col grow text-4xl text-neutral-800 max-md:mt-10 max-md:max-w-full">
+          <h3>Get the latest news from us</h3>
+          <form class="mt-10">
+            <label for="emailInput" class="sr-only">Enter your email address</label>
+            <input type="email" id="emailInput" placeholder="Enter your email address"
+              aria-label="Enter your email address"
+              class="px-3.5 pt-2.5 pb-5 w-full border border-black border-solid text-emerald-950 max-md:pr-5 max-md:mt-10 max-md:max-w-full" />
+            <p class="mt-11 text-3xl max-md:mt-10 max-md:mr-2.5 max-md:max-w-full">
+              <span class="font-semibold text-neutral-800">By signing up, you agree to our </span>
+              <a href="#" class="font-semibold underline text-neutral-800">Privacy Policy</a>
+              <span class="font-semibold text-neutral-800"> and </span>
+              <a href="#" class="font-semibold underline text-neutral-800">Terms of Service.</a>
+            </p>
+            <button type="submit"
+              class="self-start px-16 py-4 mt-14 text-3xl text-white whitespace-nowrap bg-emerald-950 max-md:px-5 max-md:mt-10">Subscribe</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
-
-
-{% endblock content %}
