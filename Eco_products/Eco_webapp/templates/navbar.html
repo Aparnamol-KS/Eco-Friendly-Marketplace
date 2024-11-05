@@ -101,7 +101,7 @@
 
       {% if user.is_authenticated %}
       <div class="dropdown mr-5">
-        <img src='{{ user_profile_pic|default:"bulbs.jpeg" }}' alt="Profile Image" class="profile-img"
+        <img src="{{ user_profile_pic|default:'Eco_products\Eco_webapp\static\images\bulbs.jpeg' }}" alt="Profile Image" class="profile-img"
           id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
           <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>

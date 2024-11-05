@@ -40,11 +40,13 @@ def login_user(request):
 
 def register_user(request):
     if request.method == 'POST':
-        name = request.POST['name1']
-        email = request.POST['email']
-        password = request.POST['password']
-        address = request.POST['address']
-        image = request.FILES['photo'] 
+        name = request.POST.get('name1')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        address = request.POST.get('address')
+        
+        image = request.FILES.get('photo')  # Use .get() to avoid MultiValueDictKeyError
+        print("Image:", image)
         
         try:
             # Create a new user and set the password securely
@@ -58,7 +60,7 @@ def register_user(request):
             userprofile = UserProfile.objects.create(
                 user=user,  # Use the user object here
                 address=address,
-                photo=image
+                photo=image  # This can be None if no file was uploaded
             )
 
             # Success message and redirect to login
@@ -70,7 +72,6 @@ def register_user(request):
             return redirect('register')
 
     return render(request, 'register.html')
-
 
     
 def product_listing(request,category):
@@ -166,6 +167,12 @@ def add_to_cart(request,product_id):
 
     if created:
         messages.success(request, 'Added to Cart')
+        # Check if the product is in the user's wishlist and delete it
+        try:
+            wishlist_item = Wishlist.objects.get(user=buyer, product=product)
+            wishlist_item.delete()  # Remove the item from the wishlist
+        except Wishlist.DoesNotExist:
+            pass  # Item was not in the wishlist, do nothing
     else:
         messages.info(request, 'This product is already in your Cart.')
 
