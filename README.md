@@ -5,7 +5,14 @@ The **Eco-Friendly Marketplace** is a Django-based web application where users c
 
 
 ---
+## Working
 
+
+https://github.com/user-attachments/assets/cfe6d512-c8d8-4a7b-85cc-5f0443378e56
+
+
+
+---
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Technologies Used](#technologies-used)
@@ -25,27 +32,27 @@ The **Eco-Friendly Marketplace** is a Django-based web application where users c
 
 
 ## Setup
-### 1. Clone the Repository
+#### 1. Clone the Repository
 First, clone the repository to your local machine:
 ```bash
 git clone https://github.com/username/eco-friendly-marketplace.git
 cd eco-friendly-marketplace
 ```
 
-### 2. Set up a Virtual Environment
+#### 2. Set up a Virtual Environment
 ```bash
 python -m venv env
 ```
-### 3. Activate the virtual environment
+#### 3. Activate the virtual environment
 ```bash
 env\Scripts\activate
 ```
-### 4. Install Dependencies
+#### 4. Install Dependencies
 Make sure you have all necessary Python packages installed by running this command
 ```bash
 pip install -r requirements.txt
 ```
-### 5. Migrate the database 
+#### 5. Migrate the database 
 After setting up the environment, run the migrations to set up the database
 ```bash
 python manage.py migrate
@@ -53,7 +60,7 @@ python manage.py migrate
 ---
 
 ## Running the Application
-### Start the Development Server 
+#### Start the Development Server 
 Once everything is set up, you can run the server with
 ```bash 
 python manage.py runserver
