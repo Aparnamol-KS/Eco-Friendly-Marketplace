@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Product Page{% endblock title %}
 
 {% block style %}
 <style>
   body {
-    font-family: Gilroy;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     width: 100%;
     height: 100%;
     overflow: hidden;
     background-color: #E9FAFD;
-    ;
   }
 
   ::-webkit-scrollbar {
@@ -35,6 +33,7 @@
     font-size: 1rem;
     border: none;
     border-radius: 30px;
+    cursor: pointer;
   }
 
   .nav-link {
@@ -61,22 +60,23 @@
 
 {% include "navbar.html" %}
 <section>
-  <div class="w-100">
-    <h1 class=" text-white w-100 p-3 pl-5"
-      style="font-weight:200; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 30px; background-color: #18291e;">
-      Sustainable Home Essentials</h1>
+  
+  {% if messages %}
+  {% for msg in messages %}
+  <div style="position: absolute;" class="alert alert-info w-100" role="alert">
+      {{msg}}
   </div>
-
-  <div class="container">
+  {% endfor %}
+  {% endif %}
+  <div class="container pt-5">
     <div class="row ">
-
       <div class="col-md-6 my-auto">
-        <img src=" {% static 'images\Eco-friendly-toothbrush.jpeg' %} " class="img-fluid rounded mt-3"
+        <img src=" {% static product.product_image %} " class="img-fluid rounded "
           style="height:520px; width:400px;" alt="Responsive image">
       </div>
 
-      <div class="col-md-6 my-auto">
-        <h1 style="font-size: 35px;">Bamboo Toothbrushes</h1>
+      <div class="col-md-6 my-auto ">
+        <h1 class="alegreya-font" style="font-size: 38px;">{{product.product_name}}</h1>
         <div class="rating">
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
@@ -85,29 +85,34 @@
           <i class="far fa-star"></i>
         </div>
 
-        <p style="color:green; font-size: 25px;">$4</p>
-        <p style="font-size: 15px;">Switch to a greener lifestyle with our eco-friendly bamboo toothbrushes, made from
-          100% biodegradable bamboo. Thoughtfully designed for both comfort and quality, these toothbrushes offer a
-          sustainable, plastic-free alternative that cares for your smile and the planet.</p>
-        <ul style="font-size: 15px;">
-          <li><strong>Eco-Certifications : </strong> EcoCert, Plastic-Free Trustmark</li>
-          <li><strong>Stock : </strong> 150 units</li>
-          <li><strong>Material : </strong>Natural bamboo handle, BPA-free soft bristles</li>
-          <li><strong>Category : </strong> Oral Care</li>
-          <li><strong>Care Instructions : </strong> Keep dry after use for extended life.</li>
+        <p style="color:green; font-size: 30px;">${{product.price}}</p>
+        <p style="font-size: 17px;">{{product.description}}</p>
+        <ul style="font-size: 17px;">
+          <li><strong>Eco-Certifications : </strong> {{product.eco_friendly_certifications}}</li>
+          <li class="pt-1"><strong>Stock : </strong>{{product.stock}}</li>
+          <li class="pt-1"><strong>Material : </strong>{{product.material}}</li>
+          <li class="pt-1"><strong>Category : </strong> {{product.category}}</li>
 
         </ul>
         <div class="row pt-4">
           <div class="col-md-6">
+            <form method="POST" action=" {% url 'add_to_wishlist' product.product_id %} ">
+              {% csrf_token %}
             <button type="submit" name="submit_button" class="button w-100">
               ADD TO WISHLIST
             </button>
+          </form>
           </div>
           <div class="col-md-6">
+            <form method="POST" action=" {% url 'add_to_cart' product.product_id %} ">
+              {% csrf_token %}
             <button type="submit" name="submit_button" class="button w-100">
               ADD TO CART
             </button>
+            </form>
           </div>
+
+
         </div>
       </div>
     </div>

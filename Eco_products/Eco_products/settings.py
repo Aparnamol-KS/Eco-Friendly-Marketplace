@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6e#bgth!9!8i)v$pltsi$4**#sjl%&)=)l54uef#@gp!pu3w1l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Eco_webapp',
-    'import_export'
+    'import_export',
+    'Eco_webapp.apps.EcoWebappConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'Eco_products.urls'
 
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Eco_webapp.context_processors.user_profile',
             ],
         },
     },
@@ -71,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Eco_products.wsgi.application'
 
-
+import os
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -116,10 +118,21 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = 'static/'
+import os
+
+# MEDIA_URL is the URL that will serve the media files
+MEDIA_URL = '/media/'
+
+# MEDIA_ROOT is the directory where uploaded media files will be saved
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+

@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        width: 100%;
+        height: 100%;
+        background-color: #E9FAFD;
+        font-size: 16px;
+    }
+
+
+    .rating i {
+        font-size: 16px;
+        color: gold;
+
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    .field {
+        padding: 2px;
+    }
+
+    .button {
+        background-color: #18291e;
+        color: white;
+        width: 9em;
+        height: 3em;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 30px;
+    }
+
+    .nav-link {
+        margin-left: 40px;
+        font-size: 18px;
+    }
+
+    .profile-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .dropdown-menu {
+        right: 0;
+        left: auto;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .custom-number-input {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .custom-number-input input {
+        text-align: center;
+        width: 80px;
+        background-color: white;
+        border: none;
+        font-size: 20px;
+
+    }
+
+    .custom-button {
+        border: 1px solid white;
+        background-color: white;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+    .cross-link:hover,
+    .cross-link {
+        text-decoration: none;
+        color: black;
+    }
+</style>
+
+{% endblock style %}
+
+{% block content %}
+{% include "navbar.html" %}
+
+
+<section>
+    <div class="container-fluid">
+        <div class="row m-4 p-3">
+            <div class="col-md-12">
+
+                {% for order in orders %}
+
+                <div class="card mt-2 p-5">
+
+                    <div class="col-md-12 ">
+                        <h1><b>OrderID : {{order.order_id}}<br></b></h1>
+                        <p style="color: #18291e; font-size: 18px;"><i>Order date : {{order.order_date}}</i><br>
+                            <span style="color:grey"><i><b>Status :</b></span> {{order.status}}</i><br>
+                            <span style="color:grey"><i><b>Shipping Address: </b></span>{{shipping_address}}</i>
+                        </p>
+                    </div>
+
+
+                    <div class="row pt-3 ">
+
+                        {% for item in order.order_items.all %}
+    
+
+                        <div class="col-md-4 pt-3">
+                            <div class="card"
+                                style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                <div class="row">
+                                    <div class="col-md-4 text-center p-4 pl-5">
+                                        <img src=" {{ item.product_image.url }} " style="height:8rem; width:8rem;" class=" rounded">
+                                    </div>
+                                    <div class="col-md-8 pl-5 my-auto">
+                                        <div class="card-body">
+                                            <h6 class="card-title mb-3">{{ item.product_name }}</h6>
+                                            <h5 style="color:#18291e">${{item.price}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="row pt-5 pl-4">
+                        <div class="col-md-9">
+                            <p style="font-size: 25px;"><strong>Total Price : <span
+                                        style="color: green;">${{ order.total_price }}</span></strong></p>
+                        </div>
+                        <div class="col-md-3">
+                            <form action=" {% url 'delete_order' order.order_id %}">
+                            <button type="submit" name="submit_button" class="button w-100">
+                                Cancel Order
+                            </button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                {% empty %}
+                    <h1 class="text-center p-5">You haven't placed any orders yet</h1>
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

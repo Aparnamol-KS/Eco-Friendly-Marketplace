@@ -106,3 +106,6 @@ sftp-config.json
 
 # Log directory #
 logs/
+
+# Include Django migrations (keep migrations directory tracked)
+!*/migrations/

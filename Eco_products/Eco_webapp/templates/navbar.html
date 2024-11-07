@@ -1,12 +1,77 @@
 {% load static %}
+<style>
+  .dancing-script-font {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .alegreya-font {
+    font-family: "Alegreya", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .economica-regular {
+    font-family: "Economica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .economica-bold {
+    font-family: "Economica", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .economica-regular-italic {
+    font-family: "Economica", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .economica-bold-italic {
+    font-family: "Economica", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  nav ul li.active a {
+    text-decoration: none;
+    /* This will underline the active link */
+    font-weight: bolder;
+    background-color: white;
+    border-radius: 10px;
+    height: 40px;
+    font-family: "Alegreya", serif;
+  }
+
+  .navbar-light .navbar-nav .active>.nav-link,
+  .navbar-light .navbar-nav .nav-link.active,
+  .navbar-light .navbar-nav .nav-link.show,
+  .navbar-light .navbar-nav .show>.nav-link {
+    color: black;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: white;
+  }
+
+  .navbar-light:hover .navbar-nav:hover .nav-link:hover {
+    color: white;
+  }
+</style>
 <header>
   <div class="row">
     <nav class="navbar navbar-expand-lg navbar-light col-md-12 p-3 "
-      style="background-color: #18291e; font-family: Gilroy;">
+      style="background-color: #18291e; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
       <div style="padding:2px;">
-        <a class="navbar-brand text-white pl-4 align-center" style="font-size: 30px; " href="#">
-          <img src=" {% static 'images\logo.png' %} " width="40" height="20" class=" d-inline-block "
-            style="padding-right:8px; color: white;" alt="" />
+        <a class="navbar-brand text-white pl-4 align-center dancing-script-font" style="font-size: 37px; "
+          href="{% url 'home' %}">
+          <img src="{% static 'images\logo.png' %}" width="40" height="20" class="d-inline-block "
+            style="padding-right:8px;" alt="" />
           EcoRoots
         </a>
       </div>
@@ -14,31 +79,59 @@
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav ml-auto mr-5">
-          <li class="nav-item active">
-            <a class="text-white nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <div class="collapse navbar-collapse " id="navbarText">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+            <a class=" nav-link" href=" {% url 'home' %} ">Home </a>
           </li>
-          <li class="nav-item">
-            <a class="text-white nav-link " href="#">Shop</a>
+          <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+            <a class=" nav-link " href="{% url 'home' %}">Shop</a>
           </li>
-          <li class="nav-item">
-            <a class="text-white nav-link" href="#">Cart</a>
+          <li class="nav-item {% if request.path == '/cart' %}active{% endif %}">
+            <a class=" nav-link test" href=" {% url 'cart' %} ">Cart</a>
           </li>
-          <li class="nav-item">
-            <a class="text-white nav-link" href="#">Wishlist</a>
+          <li class="nav-item {% if request.path == '/cart/order_summary/' %}active{% endif %}">
+            <a class="  nav-link " href=" {% url 'order_summary' %} ">My orders</a>
+          </li>
+          <li class="nav-item mr-5  {% if request.path == '/wishlist' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
           </li>
         </ul>
       </div>
+
+      {% if user.is_authenticated %}
       <div class="dropdown mr-5">
-        <img src=" {% static 'images\bg-register.png' %} " alt="Profile Image" class="profile-img" id="profileDropdown"
+        <img src="{{ user_profile_pic|default:'Eco_products\Eco_webapp\static\images\bulbs.jpeg' }}" alt="Profile Image" class="profile-img" id="profileDropdown"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
-          <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="#">Logout</a>
-          <a class="dropdown-item" href="#">Any Action</a>
+          <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+          <a class="dropdown-item" href=" {% url 'logout' %} ">Logout</a>
+          {% if user.is_superuser %}
+          <a class="dropdown-item" href="{% url 'admin_interface:index' %}">Admin Panel</a>
+          {% endif %}
         </div>
       </div>
+      {% else %}
+      <div class="log">
+
+        <ul class="navbar-nav  mr-5">
+          <li class="nav-item {% if request.path == '/login' %}active{% endif %}">
+            <a href="{% url 'login' %}" class=" nav-link">
+              <b>Login</b>
+            </a>
+          </li>
+          <li class="nav-item {% if request.path == '/register' %}active{% endif %}">
+            <a href="{% url 'register' %}" class=" nav-link">
+              <b>Register</b>
+            </a>
+          </li>
+        </ul>
+      </div>
+      {% endif %}
+
+
+
+
     </nav>
   </div>
 </header>
