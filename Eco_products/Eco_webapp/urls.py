@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path,include
 from .import views
@@ -21,7 +20,7 @@ urlpatterns = [
     path('cart/delete_cart_item/<str:product_id>/',views.delete_cart_item,name='delete_cart_item'),
     path('add_to_wishlist/<str:product_id>/',views.add_to_wishlist,name='add_to_wishlist'),
     path('wishlist/delete_wishlist_item/<str:product_id>/',views.delete_wishlist_item,name='delete_wishlist_item'),
-    path('admin/', admin.site.urls)
+    path('admin_interface/', admin.site.urls)
     
 
    

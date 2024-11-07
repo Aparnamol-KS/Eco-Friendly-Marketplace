@@ -46,24 +46,23 @@ def register_user(request):
         address = request.POST.get('address')
         
         image = request.FILES.get('photo')  # Use .get() to avoid MultiValueDictKeyError
-        print("Image:", image)
+        
+        # Debugging line
+        print("Image:", image)  # Check if the image is None or has the file object
         
         try:
-            # Create a new user and set the password securely
             user = User.objects.create_user(
                 username=name,
                 email=email,
                 password=password  
             )
 
-            # Create UserProfile associated with the user
             userprofile = UserProfile.objects.create(
-                user=user,  # Use the user object here
+                user=user,
                 address=address,
                 photo=image  # This can be None if no file was uploaded
             )
 
-            # Success message and redirect to login
             messages.success(request, 'User registered successfully!')
             return redirect('login')
 
@@ -72,6 +71,7 @@ def register_user(request):
             return redirect('register')
 
     return render(request, 'register.html')
+
 
     
 def product_listing(request,category):
@@ -139,8 +139,9 @@ def profile_view(request):
 
         # Update the user's profile information
         user_profile.address = address
-        if image:  # Check if a new image is uploaded
+        if image:  # If a new image is uploaded, use it
             user_profile.photo = image
+        
             
         # Save the user profile instance to the database
         user_profile.save()

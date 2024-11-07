@@ -3,6 +3,9 @@ from .models import Product,Order,Eco_certifications,Cart,Wishlist,UserProfile,o
 from import_export.admin import ImportExportModelAdmin
 
 # Register your models here.
+ 
+
+# Register the model with the Django admin site
 
 admin.site.register(Order)
 admin.site.register(Eco_certifications)
